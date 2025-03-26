@@ -1,6 +1,6 @@
 import { pick } from "accept-language-parser";
 import { getClientLocales } from "./utils";
-import { Cookie, SessionStorage } from "@remix-run/node";
+import { Cookie, SessionStorage } from "react-router";
 
 export interface LanguageDetectorOption {
   /**

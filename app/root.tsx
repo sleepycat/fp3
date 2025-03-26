@@ -1,16 +1,6 @@
-import {
-	ActionFunctionArgs,
-	LoaderFunctionArgs,
-	logDevReady,
-} from "@remix-run/node";
-import { data } from "@remix-run/node";
-import {
-	Links,
-	Meta,
-	Outlet,
-	Scripts,
-	ScrollRestoration,
-} from "@remix-run/react";
+import { ActionFunctionArgs, LoaderFunctionArgs, logDevReady } from "react-router";
+import { data } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { linguiServer, localeCookie } from "./modules/lingui/lingui.server";
 import { loadCatalog, useLocale } from "./modules/lingui/lingui";
 import { useEffect } from "react";

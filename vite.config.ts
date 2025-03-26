@@ -1,11 +1,8 @@
 import { lingui } from "@lingui/vite-plugin";
-import { vitePlugin as remix } from "@remix-run/dev";
-import { installGlobals } from "@remix-run/node";
+import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig } from "vite";
 import macrosPlugin from "vite-plugin-babel-macros";
 import tsconfigPaths from "vite-tsconfig-paths";
-
-installGlobals();
 
 declare module "@remix-run/node" {
 	// or cloudflare, deno, etc.
@@ -19,7 +16,7 @@ export default defineConfig({
 		port: 3000,
 	},
 	plugins: [
-		remix({
+		reactRouter({
 			future: {
 				v3_fetcherPersist: true,
 				v3_relativeSplatPath: true,

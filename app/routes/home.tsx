@@ -1,5 +1,5 @@
 import { t, Trans } from "@lingui/macro";
-import { data, type MetaFunction } from "@remix-run/node";
+import { data, type MetaFunction } from "react-router";
 import { LocaleSelector } from "~/modules/lingui/lingui";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {

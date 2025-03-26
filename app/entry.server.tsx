@@ -8,9 +8,9 @@ import { PassThrough } from "node:stream";
 
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
-import type { AppLoadContext, EntryContext } from "@remix-run/node";
-import { createReadableStreamFromReadable } from "@remix-run/node";
-import { RemixServer } from "@remix-run/react";
+import type { AppLoadContext, EntryContext } from "react-router";
+import { createReadableStreamFromReadable } from "@react-router/node";
+import { ServerRouter } from "react-router";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { linguiServer } from "./modules/lingui/lingui.server";
@@ -22,7 +22,7 @@ export default function handleRequest(
 	request: Request,
 	responseStatusCode: number,
 	responseHeaders: Headers,
-	remixContext: EntryContext,
+	reactRouterContext: EntryContext,
 	// This is ignored so we can keep it in the template for visibility.  Feel
 	// free to delete this parameter in your app if you're not using it!
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -33,13 +33,13 @@ export default function handleRequest(
 				request,
 				responseStatusCode,
 				responseHeaders,
-				remixContext,
+				reactRouterContext,
 			)
 		: handleBrowserRequest(
 				request,
 				responseStatusCode,
 				responseHeaders,
-				remixContext,
+				reactRouterContext,
 			);
 }
 
@@ -47,7 +47,7 @@ async function handleBotRequest(
 	request: Request,
 	responseStatusCode: number,
 	responseHeaders: Headers,
-	remixContext: EntryContext,
+	reactRouterContext: EntryContext,
 ) {
 	const locale = await linguiServer.getLocale(request);
 	await loadCatalog(locale);
@@ -56,7 +56,7 @@ async function handleBotRequest(
 		let shellRendered = false;
 		const { pipe, abort } = renderToPipeableStream(
 			<I18nProvider i18n={i18n}>
-				<RemixServer context={remixContext} url={request.url} />
+				<ServerRouter context={reactRouterContext} url={request.url} />
 			</I18nProvider>,
 			{
 				onAllReady() {
@@ -98,7 +98,7 @@ async function handleBrowserRequest(
 	request: Request,
 	responseStatusCode: number,
 	responseHeaders: Headers,
-	remixContext: EntryContext,
+	reactRouterContext: EntryContext,
 ) {
 	const locale = await linguiServer.getLocale(request);
 	await loadCatalog(locale);
@@ -107,7 +107,7 @@ async function handleBrowserRequest(
 		let shellRendered = false;
 		const { pipe, abort } = renderToPipeableStream(
 			<I18nProvider i18n={i18n}>
-				<RemixServer context={remixContext} url={request.url} />
+				<ServerRouter context={reactRouterContext} url={request.url} />
 			</I18nProvider>,
 			{
 				onShellReady() {

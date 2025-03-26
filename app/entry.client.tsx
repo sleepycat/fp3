@@ -7,7 +7,7 @@
 import { i18n } from "@lingui/core";
 import { detect, fromHtmlTag } from "@lingui/detect-locale";
 import { I18nProvider } from "@lingui/react";
-import { RemixBrowser } from "@remix-run/react";
+import { HydratedRouter } from "react-router/dom";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { loadCatalog } from "./modules/lingui/lingui";
@@ -22,7 +22,7 @@ async function main() {
       document,
       <StrictMode>
         <I18nProvider i18n={i18n}>
-          <RemixBrowser />
+          <HydratedRouter />
         </I18nProvider>
       </StrictMode>
     );

@@ -4,3 +4,16 @@ node_modules
 /.cache
 /build
 .env
+
+# v7 build files
+.react-router
+
+.wireit
+.eslintcache
+.tmp
+tsup.config.bundled_*.mjs
+build.utils.d.ts
+/NOTES.md
+
+# v7 reference docs
+/public

@@ -1,6 +1,6 @@
 import config from "./config";
 import { RemixLingui } from "./remix.server";
-import { createCookie } from "@remix-run/node";
+import { createCookie } from "react-router";
 
 export const localeCookie = createCookie("lng", {
   path: "/",
