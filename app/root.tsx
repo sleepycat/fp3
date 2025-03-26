@@ -1,10 +1,6 @@
 import { LocaleSelector } from "~/modules/lingui/lingui";
 import { t, Trans } from "@lingui/macro";
-import {
-	ActionFunctionArgs,
-	LoaderFunctionArgs,
-	logDevReady,
-} from "react-router";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import type { LinksFunction } from "react-router";
 import { data } from "react-router";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
