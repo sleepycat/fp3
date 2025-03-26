@@ -1,11 +1,10 @@
 @layer reset, base, tokens, recipes, utilities;
 
-html,
 body {
-  height: 100%;
-}
+  min-height: 100vh;
+  min-height: 100dvh;
 
-body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows:
+    auto 1fr auto;
 }

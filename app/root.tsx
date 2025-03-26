@@ -46,7 +46,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 const headerClass = css`
   padding: 1em;
   display: flex;
-  justify-content: space-between;
+ justify-content: space-between;
 `;
 
 const mainClass = css`
@@ -58,8 +58,7 @@ const mainClass = css`
 const footerClass = css`
   padding: 2em;
   display: flex;
-  flex-shrink: 0;
-  justify-content: flex-end;
+ justify-content: space-between;
   background-color: #f1f2f3;
 `;
 
