@@ -1,0 +1,11 @@
+@layer reset, base, tokens, recipes, utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}

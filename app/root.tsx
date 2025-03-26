@@ -5,12 +5,20 @@ import {
 	LoaderFunctionArgs,
 	logDevReady,
 } from "react-router";
+import type { LinksFunction } from "react-router";
 import { data } from "react-router";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { linguiServer, localeCookie } from "./modules/lingui/lingui.server";
 import { loadCatalog, useLocale } from "./modules/lingui/lingui";
 import { useEffect } from "react";
 import { i18n } from "@lingui/core";
+import { css } from "../styled-system/css";
+import stylesheet from "./app.css?url";
+
+export const links: LinksFunction = () => [
+	// ...
+	{ rel: "stylesheet", href: stylesheet },
+];
 
 export async function action({ request }: ActionFunctionArgs) {
 	const formData = await request.formData();
@@ -39,6 +47,26 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	);
 }
 
+const headerClass = css`
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const mainClass = css`
+  width: 80%;
+  margin: auto auto;
+  flex: 1 0 auto;
+`;
+
+const footerClass = css`
+  padding: 2em;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  background-color: #f1f2f3;
+`;
+
 export type RootLoaderType = typeof loader;
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -58,13 +86,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 			</head>
-			<body>
-				<header>
+			<body className={css`background-color: #ffffff;`}>
+				<header className={headerClass}>
 					<Trans>Royal Canadian Mounted Police</Trans>
 					<LocaleSelector />
 				</header>
-				{children}
-				<footer>
+				<main className={mainClass}>{children}</main>
+				<footer className={footerClass}>
 					<Trans>links</Trans>
 				</footer>
 				<ScrollRestoration />
