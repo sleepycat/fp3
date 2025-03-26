@@ -8,12 +8,15 @@ import { linguiServer, localeCookie } from "./modules/lingui/lingui.server";
 import { loadCatalog, useLocale } from "./modules/lingui/lingui";
 import { useEffect } from "react";
 import { i18n } from "@lingui/core";
+import Wordmark from "./Wordmark";
 import { css } from "../styled-system/css";
+import font from "../public/OverusedGrotesk-VF.woff2?url";
 import stylesheet from "./app.css?url";
 
 export const links: LinksFunction = () => [
 	// ...
 	{ rel: "stylesheet", href: stylesheet },
+	{ rel: "preload", as: "font", href: font, type: "font/woff2" },
 ];
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -55,12 +58,29 @@ const mainClass = css`
   flex: 1 0 auto;
 `;
 
-const footerClass = css`
+function Footer() {
+	const footerClass = css`
   padding: 2em;
   display: flex;
- justify-content: space-between;
+  flex-shrink: 0;
+  justify-content: space-between;
   background-color: #f1f2f3;
 `;
+
+	return (
+		<footer className={footerClass}>
+			<Trans>links</Trans>
+			<Wordmark.SVG
+				aria-label={"Symbol of the Government of Canada"}
+				role="img"
+				width="10em"
+			>
+				<Wordmark.Flag className={css`fill: #EA2D37;`} />
+				<Wordmark.Text />
+			</Wordmark.SVG>
+		</footer>
+	);
+}
 
 export type RootLoaderType = typeof loader;
 
@@ -87,9 +107,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 					<LocaleSelector />
 				</header>
 				<main className={mainClass}>{children}</main>
-				<footer className={footerClass}>
-					<Trans>links</Trans>
-				</footer>
+				<Footer />
 				<ScrollRestoration />
 				<Scripts />
 			</body>

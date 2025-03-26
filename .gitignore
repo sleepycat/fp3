@@ -15,9 +15,6 @@ tsup.config.bundled_*.mjs
 build.utils.d.ts
 /NOTES.md
 
-# v7 reference docs
-/public
-
 ## Panda
 styled-system
 styled-system-studio
