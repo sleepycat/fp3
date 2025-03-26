@@ -13,11 +13,16 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: app/routes.ts:7
+msgid "/terms-and-conditions"
+msgstr ""
+
 #: app/routes/home.tsx:30
 msgid "15m Quickstart Blog Tutorial"
 msgstr ""
 
 #: app/routes/home.tsx:6
+#: app/routes/termsAndConditions.tsx:6
 msgid "An Unexpected Error Occured"
 msgstr ""
 
@@ -33,11 +38,16 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: app/root.tsx:69
+#: app/routes/termsAndConditions.tsx:24
+msgid "Legal jargon"
+msgstr ""
+
+#: app/root.tsx:96
 msgid "links"
 msgstr ""
 
 #: app/routes/home.tsx:13
+#: app/routes/termsAndConditions.tsx:13
 msgid "Public Portal"
 msgstr ""
 
@@ -45,7 +55,12 @@ msgstr ""
 msgid "Remix Docs"
 msgstr ""
 
-#: app/root.tsx:64
+#: app/root.tsx:91
 #: app/routes/home.tsx:7
+#: app/routes/termsAndConditions.tsx:7
 msgid "Royal Canadian Mounted Police"
+msgstr ""
+
+#: app/routes/termsAndConditions.tsx:21
+msgid "Terms and Conditions"
 msgstr ""

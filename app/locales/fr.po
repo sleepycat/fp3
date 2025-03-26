@@ -13,11 +13,16 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: app/routes.ts:7
+msgid "/terms-and-conditions"
+msgstr "/avis"
+
 #: app/routes/home.tsx:30
 msgid "15m Quickstart Blog Tutorial"
 msgstr "Tutoriel de démarrage rapide de 15 minutes pour un blog"
 
 #: app/routes/home.tsx:6
+#: app/routes/termsAndConditions.tsx:6
 msgid "An Unexpected Error Occured"
 msgstr "Une erreur inattendue s’est produite."
 
@@ -33,11 +38,16 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
-#: app/root.tsx:69
+#: app/routes/termsAndConditions.tsx:24
+msgid "Legal jargon"
+msgstr "Termes juridiques obscurs"
+
+#: app/root.tsx:96
 msgid "links"
 msgstr "liens"
 
 #: app/routes/home.tsx:13
+#: app/routes/termsAndConditions.tsx:13
 msgid "Public Portal"
 msgstr "Portail public"
 
@@ -45,7 +55,12 @@ msgstr "Portail public"
 msgid "Remix Docs"
 msgstr "Documentation Remix"
 
-#: app/root.tsx:64
+#: app/root.tsx:91
 #: app/routes/home.tsx:7
+#: app/routes/termsAndConditions.tsx:7
 msgid "Royal Canadian Mounted Police"
 msgstr "Gendarmerie royale du Canada"
+
+#: app/routes/termsAndConditions.tsx:21
+msgid "Terms and Conditions"
+msgstr "Avis"
