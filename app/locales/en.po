@@ -13,38 +13,39 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/routes/_index.tsx:29
+#: app/routes/home.tsx:30
 msgid "15m Quickstart Blog Tutorial"
 msgstr ""
 
-#: app/routes/_index.tsx:7
+#: app/routes/home.tsx:6
 msgid "An Unexpected Error Occured"
-msgstr ""
-
-#: app/routes/_index.tsx:38
-msgid "Deep Dive Jokes App Tutorial"
 msgstr ""
 
 #: app/modules/lingui/lingui.tsx:14
 msgid "English"
 msgstr ""
 
+#: app/routes/home.tsx:21
+msgid "Federal Policing Public Portal"
+msgstr ""
+
 #: app/modules/lingui/lingui.tsx:15
 msgid "French"
 msgstr ""
 
-#: app/routes/_index.tsx:14
-msgid "New Remix App"
+#: app/root.tsx:69
+msgid "links"
 msgstr ""
 
-#: app/routes/_index.tsx:43
+#: app/routes/home.tsx:13
+msgid "Public Portal"
+msgstr ""
+
+#: app/routes/home.tsx:35
 msgid "Remix Docs"
 msgstr ""
 
-#: app/routes/_index.tsx:21
-msgid "Welcome to Remix"
-msgstr ""
-
-#: app/routes/_index.tsx:8
-msgid "Welcome to Remix!"
+#: app/root.tsx:64
+#: app/routes/home.tsx:7
+msgid "Royal Canadian Mounted Police"
 msgstr ""

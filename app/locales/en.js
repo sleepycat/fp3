@@ -1,0 +1,1 @@
+/*eslint-disable*/module.exports={messages:JSON.parse("{\"SKzEor\":\"15m Quickstart Blog Tutorial\",\"cYOele\":\"An Unexpected Error Occured\",\"lYGfRP\":\"English\",\"FHcLxM\":\"Federal Policing Public Portal\",\"nLC6tu\":\"French\",\"Z3jxtm\":\"links\",\"A78Zs0\":\"Public Portal\",\"CDtsbp\":\"Remix Docs\",\"VliEgV\":\"Royal Canadian Mounted Police\"}")};

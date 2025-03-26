@@ -1,17 +1,16 @@
 import { t, Trans } from "@lingui/macro";
 import { data, type MetaFunction } from "react-router";
-import { LocaleSelector } from "~/modules/lingui/lingui";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	return [
 		{ title: data?.title ?? t`An Unexpected Error Occured` },
-		{ name: "description", content: t`Welcome to Remix!` },
+		{ name: "description", content: t`Royal Canadian Mounted Police` },
 	];
 };
 
 export function loader() {
 	return data({
-		title: t`New Remix App`,
+		title: t`Public Portal`,
 	});
 }
 
@@ -19,7 +18,7 @@ export default function Index() {
 	return (
 		<div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
 			<h1>
-				<Trans>Welcome to Remix</Trans>
+				<Trans>Federal Policing Public Portal</Trans>
 			</h1>
 			<ul>
 				<li>
@@ -32,21 +31,11 @@ export default function Index() {
 					</a>
 				</li>
 				<li>
-					<a
-						target="_blank"
-						href="https://remix.run/tutorials/jokes"
-						rel="noreferrer"
-					>
-						<Trans>Deep Dive Jokes App Tutorial</Trans>
-					</a>
-				</li>
-				<li>
 					<a target="_blank" href="https://remix.run/docs" rel="noreferrer">
 						<Trans>Remix Docs</Trans>
 					</a>
 				</li>
 			</ul>
-			<LocaleSelector />
 		</div>
 	);
 }

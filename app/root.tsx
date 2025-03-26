@@ -1,4 +1,10 @@
-import { ActionFunctionArgs, LoaderFunctionArgs, logDevReady } from "react-router";
+import { LocaleSelector } from "~/modules/lingui/lingui";
+import { t, Trans } from "@lingui/macro";
+import {
+	ActionFunctionArgs,
+	LoaderFunctionArgs,
+	logDevReady,
+} from "react-router";
 import { data } from "react-router";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { linguiServer, localeCookie } from "./modules/lingui/lingui.server";
@@ -20,7 +26,6 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export async function loader({ request }: LoaderFunctionArgs) {
 	const locale = await linguiServer.getLocale(request);
-	console.log({ rootLoaderlocale: locale, url: request.url });
 
 	return data(
 		{
@@ -54,7 +59,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
+				<header>
+					<Trans>Royal Canadian Mounted Police</Trans>
+					<LocaleSelector />
+				</header>
 				{children}
+				<footer>
+					<Trans>links</Trans>
+				</footer>
 				<ScrollRestoration />
 				<Scripts />
 			</body>
