@@ -7,11 +7,29 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 installGlobals();
 
+declare module "@remix-run/node" {
+	// or cloudflare, deno, etc.
+	interface Future {
+		v3_singleFetch: true;
+	}
+}
+
 export default defineConfig({
-  plugins: [
-    remix(),
-    macrosPlugin(),
-    lingui(),
-    tsconfigPaths()
-  ],
+	server: {
+		port: 3000,
+	},
+	plugins: [
+		remix({
+			future: {
+				v3_fetcherPersist: true,
+				v3_relativeSplatPath: true,
+				v3_throwAbortReason: true,
+				v3_singleFetch: true,
+				v3_lazyRouteDiscovery: true,
+			},
+		}),
+		macrosPlugin(),
+		lingui(),
+		tsconfigPaths(),
+	],
 });

@@ -1,9 +1,9 @@
 import {
 	ActionFunctionArgs,
-	json,
 	LoaderFunctionArgs,
 	logDevReady,
 } from "@remix-run/node";
+import { data } from "@remix-run/node";
 import {
 	Links,
 	Meta,
@@ -21,7 +21,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 	const locale = formData.get("locale") ?? "en";
 
-	return json(null, {
+	return data(null, {
 		headers: {
 			"Set-Cookie": await localeCookie.serialize(locale),
 		},
@@ -32,7 +32,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	const locale = await linguiServer.getLocale(request);
 	console.log({ rootLoaderlocale: locale, url: request.url });
 
-	return json(
+	return data(
 		{
 			locale,
 		},
