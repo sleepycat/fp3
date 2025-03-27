@@ -14,7 +14,7 @@
 		"extract": "lingui extract --clean",
 		"compile": "lingui compile",
 		"start": "react-router-serve ./build/server/index.js",
-		"typecheck": "tsc"
+		"typecheck": "react-router typegen && tsc"
 	},
 	"dependencies": {
 		"@lingui/core": "^4.10.0",
