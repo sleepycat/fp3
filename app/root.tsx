@@ -10,11 +10,14 @@ import { useEffect } from "react";
 import { i18n } from "@lingui/core";
 import Wordmark from "./Wordmark";
 import { css } from "../styled-system/css";
-import font from "../public/OverusedGrotesk-VF.woff2?url";
+import favicon from "./images/favicon.ico?url";
+import font from "./fonts/OverusedGrotesk-VF.woff2?url";
+import logo from "./images/rcmp-crest-black.svg?url";
 import stylesheet from "./app.css?url";
 
 export const links: LinksFunction = () => [
 	// ...
+	{ rel: "icon", href: favicon, type: "image/x-icon" },
 	{ rel: "stylesheet", href: stylesheet },
 	{ rel: "preload", as: "font", href: font, type: "font/woff2" },
 ];
@@ -103,6 +106,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className={css`background-color: #ffffff;`}>
 				<header className={headerClass}>
+					<img src={logo} />
 					<Trans>Royal Canadian Mounted Police</Trans>
 					<LocaleSelector />
 				</header>
