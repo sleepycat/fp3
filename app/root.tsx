@@ -106,7 +106,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className={css`background-color: #ffffff;`}>
 				<header className={headerClass}>
-					<img src={logo} />
+					<img alt={t`The logo of the RCMP`} src={logo} />
 					<Trans>Royal Canadian Mounted Police</Trans>
 					<LocaleSelector />
 				</header>

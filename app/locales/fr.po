@@ -43,7 +43,7 @@ msgstr "Français"
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
 
-#: app/root.tsx:72
+#: app/root.tsx:75
 msgid "links"
 msgstr "liens"
 
@@ -56,7 +56,7 @@ msgstr "Portail public"
 msgid "Remix Docs"
 msgstr "Documentation Remix"
 
-#: app/root.tsx:106
+#: app/root.tsx:110
 #: app/routes/home.tsx:7
 #: app/routes/termsAndConditions.tsx:7
 msgid "Royal Canadian Mounted Police"
@@ -65,3 +65,7 @@ msgstr "Gendarmerie royale du Canada"
 #: app/routes/termsAndConditions.tsx:21
 msgid "Terms and Conditions"
 msgstr "Avis"
+
+#: app/root.tsx:109
+msgid "The logo of the RCMP"
+msgstr "Le logo de la GRC"
