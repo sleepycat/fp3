@@ -1,25 +1,31 @@
-import { i18n, MessageDescriptor } from "@lingui/core";
+import { i18n } from "@lingui/core";
 import { msg } from "@lingui/macro";
-import { useFetcher, useFetchers, useMatches, useRouteLoaderData } from "react-router";
-import type config from "./config";
-import { ComponentProps } from "react";
-import { action, RootLoaderType } from "~/root";
+import {
+	useFetcher,
+	useFetchers,
+	useMatches,
+	useRouteLoaderData,
+} from "react-router";
 import { Trans } from "@lingui/react";
+import type { MessageDescriptor } from "@lingui/core";
+import type config from "./config";
+import type { ComponentProps } from "react";
+import type { action, RootLoaderType } from "~/root";
 
 export function getLanguages(): Array<{
-  key: (typeof config.locales)[number];
-  label: MessageDescriptor;
+	key: (typeof config.locales)[number];
+	label: MessageDescriptor;
 }> {
-  return [
-    { key: "en", label: msg`English` },
-    { key: "fr", label: msg`French` },
-  ];
+	return [
+		{ key: "en", label: msg`English` },
+		{ key: "fr", label: msg`French` },
+	];
 }
 
 export async function loadCatalog(locale: string) {
-  const { messages } = await import(`../../locales/${locale}.po`);
+	const { messages } = await import(`../../locales/${locale}.po`);
 
-  return i18n.loadAndActivate({ locale, messages });
+	return i18n.loadAndActivate({ locale, messages });
 }
 
 /**
@@ -32,65 +38,72 @@ export async function loadCatalog(locale: string) {
  * let formattedDate = date.toLocaleDateString(locale);
  */
 export function useLocale(localeKey = "locale"): string {
-  const [rootMatch] = useMatches();
-  const { [localeKey]: locale } =
-    (rootMatch.data as Record<string, string>) ?? {};
-  if (!locale) throw new Error("Missing locale returned by the root loader.");
-  if (typeof locale === "string") return locale;
-  throw new Error("Invalid locale returned by the root loader.");
+	const [rootMatch] = useMatches();
+	const { [localeKey]: locale } =
+		(rootMatch.data as Record<string, string>) ?? {};
+	if (!locale) throw new Error("Missing locale returned by the root loader.");
+	if (typeof locale === "string") return locale;
+	throw new Error("Invalid locale returned by the root loader.");
 }
 
-
 export function useOptimisticLocale() {
-  const fetchers = useFetchers();
-  const themeFetcher = fetchers.find((f) => f.formAction === "/");
+	const fetchers = useFetchers();
+	const themeFetcher = fetchers.find((f) => f.formAction === "/");
 
-  if (themeFetcher?.formData) {
-    const submission = Object.fromEntries(themeFetcher.formData)
+	if (themeFetcher?.formData) {
+		const submission = Object.fromEntries(themeFetcher.formData);
 
-    // Use Valibot or zod to validate
-    if (submission.status === "success" && typeof submission.value === "object" && "locale" in submission.value) {
-      return submission.value.locale as string;
-    }
-  }
+		// Use Valibot or zod to validate
+		if (
+			submission.status === "success" &&
+			typeof submission.value === "object" &&
+			"locale" in submission.value
+		) {
+			return submission.value.locale as string;
+		}
+	}
 }
 
 export function LocaleSelector(props: ComponentProps<"select">) {
-  const languages = getLanguages()
-  const { locale, setLocale } = useLocaleSelector();
+	const languages = getLanguages();
+	const { locale, setLocale } = useLocaleSelector();
 
-  return (<select
-      name="locale"
-      value={locale}
-      onChange={e => setLocale(e.currentTarget.value)}
-      {...props}
-    >
-      {languages.map(language => (<option key={language.key} value={language.key}><Trans id={language.label.id} /></option>))}
-    </select>
-  );
+	return (
+		<select
+			aria-label={i18n._("Switch language")}
+			onChange={(e) => setLocale(e.currentTarget.value)}
+			{...props}
+		>
+			{languages.map((language) => (
+				<option key={language.key} value={language.key}>
+					<Trans id={language.label.id} />
+				</option>
+			))}
+		</select>
+	);
 }
 
 export function useLocaleSelector() {
-  const data = useRouteLoaderData<RootLoaderType>("root");
-  const fetcher = useFetcher<typeof action>();
+	const data = useRouteLoaderData<RootLoaderType>("root");
+	const fetcher = useFetcher<typeof action>();
 
-  const optimisticLocale = useOptimisticLocale();
-  const locale = optimisticLocale ?? data?.locale ?? "en";
+	const optimisticLocale = useOptimisticLocale();
+	const locale = optimisticLocale ?? data?.locale ?? "en";
 
-  const setLocale = (locale: string) => {
-    fetcher.submit(
-      {
-        locale,
-      },
-      {
-        method: "POST",
-        action: "/",
-      },
-    );
-  };
+	const setLocale = (locale: string) => {
+		fetcher.submit(
+			{
+				locale,
+			},
+			{
+				method: "POST",
+				action: "/",
+			},
+		);
+	};
 
-  return {
-    locale,
-    setLocale,
-  };
+	return {
+		locale,
+		setLocale,
+	};
 }

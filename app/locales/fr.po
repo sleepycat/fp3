@@ -13,9 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/routes.ts:7
-msgid "/terms-and-conditions"
-msgstr "/avis"
+#. js-lingui-explicit-id
+#: app/modules/lingui/lingui.tsx:73
+msgid "Switch language"
+msgstr "basculer la langue"
 
 #: app/routes/home.tsx:30
 msgid "15m Quickstart Blog Tutorial"
@@ -26,7 +27,7 @@ msgstr "Tutoriel de démarrage rapide de 15 minutes pour un blog"
 msgid "An Unexpected Error Occured"
 msgstr "Une erreur inattendue s’est produite."
 
-#: app/modules/lingui/lingui.tsx:14
+#: app/modules/lingui/lingui.tsx:20
 msgid "English"
 msgstr "Anglais"
 
@@ -34,7 +35,7 @@ msgstr "Anglais"
 msgid "Federal Policing Public Portal"
 msgstr "Portail public de la police fédérale"
 
-#: app/modules/lingui/lingui.tsx:15
+#: app/modules/lingui/lingui.tsx:21
 msgid "French"
 msgstr "Français"
 
@@ -42,7 +43,7 @@ msgstr "Français"
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
 
-#: app/root.tsx:96
+#: app/root.tsx:72
 msgid "links"
 msgstr "liens"
 
@@ -55,7 +56,7 @@ msgstr "Portail public"
 msgid "Remix Docs"
 msgstr "Documentation Remix"
 
-#: app/root.tsx:91
+#: app/root.tsx:106
 #: app/routes/home.tsx:7
 #: app/routes/termsAndConditions.tsx:7
 msgid "Royal Canadian Mounted Police"
