@@ -16,7 +16,7 @@ export function loader() {
 
 export default function Index() {
 	return (
-		<div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
+		<>
 			<h1>
 				<Trans>Federal Policing Public Portal</Trans>
 			</h1>
@@ -36,6 +36,6 @@ export default function Index() {
 					</a>
 				</li>
 			</ul>
-		</div>
+		</>
 	);
 }

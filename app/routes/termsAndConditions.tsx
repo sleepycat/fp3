@@ -16,13 +16,13 @@ export function loader() {
 
 export default function Index() {
 	return (
-		<div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
+		<>
 			<h1>
 				<Trans>Terms and Conditions</Trans>
 			</h1>
 			<article>
 				<Trans>Legal jargon</Trans>
 			</article>
-		</div>
+		</>
 	);
 }
