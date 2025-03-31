@@ -11,8 +11,6 @@ export const localeCookie = createCookie("lng", {
   httpOnly: true,
 });
 
-// Instantiate the merged RemixLingui class directly
-// Pass the options object without the 'detection' nesting
 export const linguiServer = new LanguageDetector({
   supportedLanguages: config.locales,
   fallbackLanguage:
