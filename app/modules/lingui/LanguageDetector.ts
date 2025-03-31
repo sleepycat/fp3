@@ -58,7 +58,7 @@ export interface LanguageDetectorOption {
  * Merged class combining RemixLingui wrapper and LanguageDetector logic.
  * Detects the user preferred language fully server-side using options.
  */
-export class RemixLingui { // Renamed from LanguageDetector
+export class LanguageDetector { // Renamed from LanguageDetector
   // Store options directly
   constructor(private options: LanguageDetectorOption) {
     // Validation logic remains

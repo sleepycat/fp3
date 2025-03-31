@@ -1,8 +1,9 @@
 import config from "./config";
 // Import the merged class
-import { RemixLingui } from "./remix.server";
+import { LanguageDetector } from "./LanguageDetector";
 import { createCookie } from "react-router";
 
+// TODO: review cookie settings
 export const localeCookie = createCookie("lng", {
   path: "/",
   sameSite: "lax",
@@ -12,7 +13,7 @@ export const localeCookie = createCookie("lng", {
 
 // Instantiate the merged RemixLingui class directly
 // Pass the options object without the 'detection' nesting
-export const linguiServer = new RemixLingui({
+export const linguiServer = new LanguageDetector({
   supportedLanguages: config.locales,
   fallbackLanguage:
     (!!config.fallbackLocales && config.fallbackLocales?.default) || "en",
