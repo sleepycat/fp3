@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
+#: app/Header.tsx:38
+msgid "/terms-and-conditions"
+msgstr "/avis"
+
+#. js-lingui-explicit-id
 #: app/modules/lingui/lingui.tsx:73
 msgid "Switch language"
 msgstr "basculer la langue"
@@ -39,11 +44,15 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
+#: app/Header.tsx:36
+msgid "Home"
+msgstr "Accueil"
+
 #: app/routes/termsAndConditions.tsx:24
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
 
-#: app/root.tsx:75
+#: app/Footer.tsx:17
 msgid "links"
 msgstr "liens"
 
@@ -56,16 +65,27 @@ msgstr "Portail public"
 msgid "Remix Docs"
 msgstr "Documentation Remix"
 
-#: app/root.tsx:110
 #: app/routes/home.tsx:7
 #: app/routes/termsAndConditions.tsx:7
 msgid "Royal Canadian Mounted Police"
 msgstr "Gendarmerie royale du Canada"
 
+#: app/Header.tsx:27
+msgid "Royal Canadian<0/>Mounted Police"
+msgstr "Gendarmerie royale<0/> du Canada"
+
+#: app/Footer.tsx:19
+msgid "Symbol of the Government of Canada"
+msgstr "Symbole du gouvernement du Canada"
+
+#: app/Header.tsx:39
+msgid "terms"
+msgstr "avis"
+
 #: app/routes/termsAndConditions.tsx:21
 msgid "Terms and Conditions"
 msgstr "Avis"
 
-#: app/root.tsx:109
+#: app/Header.tsx:23
 msgid "The logo of the RCMP"
 msgstr "Le logo de la GRC"

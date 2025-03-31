@@ -1,18 +1,24 @@
-import { LocaleSelector } from "~/modules/lingui/lingui";
 import { t, Trans } from "@lingui/macro";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import type { LinksFunction } from "react-router";
 import { data } from "react-router";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import {
+	Link,
+	Links,
+	Meta,
+	Outlet,
+	Scripts,
+	ScrollRestoration,
+} from "react-router";
 import { linguiServer, localeCookie } from "./modules/lingui/lingui.server";
 import { loadCatalog, useLocale } from "./modules/lingui/lingui";
 import { useEffect } from "react";
 import { i18n } from "@lingui/core";
-import Wordmark from "./Wordmark";
+import Header from "./Header";
+import Footer from "./Footer";
 import { css } from "../styled-system/css";
 import favicon from "./images/favicon.ico?url";
 import font from "./fonts/OverusedGrotesk-VF.woff2?url";
-import logo from "./images/rcmp-crest-black.svg?url";
 import stylesheet from "./app.css?url";
 
 export const links: LinksFunction = () => [
@@ -49,41 +55,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	);
 }
 
-const headerClass = css`
-  padding: 1em;
-  display: flex;
- justify-content: space-between;
-`;
-
 const mainClass = css`
   width: 80%;
   margin: auto auto;
   flex: 1 0 auto;
 `;
-
-function Footer() {
-	const footerClass = css`
-  padding: 2em;
-  display: flex;
-  flex-shrink: 0;
-  justify-content: space-between;
-  background-color: #f1f2f3;
-`;
-
-	return (
-		<footer className={footerClass}>
-			<Trans>links</Trans>
-			<Wordmark.SVG
-				aria-label={"Symbol of the Government of Canada"}
-				role="img"
-				width="10em"
-			>
-				<Wordmark.Flag className={css`fill: #EA2D37;`} />
-				<Wordmark.Text />
-			</Wordmark.SVG>
-		</footer>
-	);
-}
 
 export type RootLoaderType = typeof loader;
 
@@ -104,12 +80,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 			</head>
-			<body className={css`background-color: #ffffff;`}>
-				<header className={headerClass}>
-					<img alt={t`The logo of the RCMP`} src={logo} />
-					<Trans>Royal Canadian Mounted Police</Trans>
-					<LocaleSelector />
-				</header>
+			<body>
+				<Header />
 				<main className={mainClass}>{children}</main>
 				<Footer />
 				<ScrollRestoration />
