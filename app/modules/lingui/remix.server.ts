@@ -2,6 +2,7 @@ import { pick } from "accept-language-parser";
 import { getClientLocales } from "./utils";
 import { Cookie, SessionStorage } from "react-router";
 
+// Options interface remains the same, but will be used directly
 export interface LanguageDetectorOption {
   /**
    * Define the list of supported languages, this is used to determine if one of
@@ -51,43 +52,21 @@ export interface LanguageDetectorOption {
   order?: Array<"searchParams" | "cookie" | "session" | "header">;
 }
 
-export interface RemixLinguiOptions {
-  detection: LanguageDetectorOption;
-}
-
-export class RemixLingui {
-  private detector: LanguageDetector;
-
-  constructor(private options: RemixLinguiOptions) {
-    this.detector = new LanguageDetector(this.options.detection);
-  }
-
-  /**
-   * Detect the current locale by following the order defined in the
-   * `detection.order` option.
-   * By default the order is
-   * - searchParams
-   * - cookie
-   * - session
-   * - header
-   * And finally the fallback language.
-   */
-  public async getLocale(request: Request): Promise<string> {
-    return this.detector.detect(request);
-  }
-}
+// Removed the old RemixLinguiOptions interface
 
 /**
- * The LanguageDetector contains the logic to detect the user preferred language
- * fully server-side by using a SessionStorage, Cookie, URLSearchParams, or
- * Headers.
+ * Merged class combining RemixLingui wrapper and LanguageDetector logic.
+ * Detects the user preferred language fully server-side using options.
  */
-export class LanguageDetector {
+export class RemixLingui { // Renamed from LanguageDetector
+  // Store options directly
   constructor(private options: LanguageDetectorOption) {
+    // Validation logic remains
     this.isSessionOnly(options);
     this.isCookieOnly(options);
   }
 
+  // Validation methods remain the same
   private isSessionOnly(options: LanguageDetectorOption) {
     if (
       options.order?.length === 1 &&
@@ -112,7 +91,17 @@ export class LanguageDetector {
     }
   }
 
-  public async detect(request: Request): Promise<string> {
+  /**
+   * Detect the current locale by following the order defined in the
+   * `options.order`.
+   * By default the order is
+   * - searchParams
+   * - cookie
+   * - session
+   * - header
+   * And finally the fallback language.
+   */
+  public async getLocale(request: Request): Promise<string> { // Renamed from detect
     const order = this.options.order ?? [
       "searchParams",
       "cookie",
@@ -123,6 +112,7 @@ export class LanguageDetector {
     for (const method of order) {
       let locale: string | null = null;
 
+      // Logic for each detection method remains the same
       if (method === "searchParams") {
         locale = this.fromSearchParams(request);
       }
@@ -145,6 +135,7 @@ export class LanguageDetector {
     return this.options.fallbackLanguage;
   }
 
+  // Helper methods remain exactly the same
   private fromSearchParams(request: Request): string | null {
     const url = new URL(request.url);
     if (!url.searchParams.has(this.options.searchParamKey ?? "lng")) {
@@ -180,28 +171,35 @@ export class LanguageDetector {
     return this.fromSupported(lng);
   }
 
-  private fromHeader(request: Request): string | null {
-    const locales = getClientLocales(request);
+ private fromHeader(request: Request): string | null {
+    const locales = getClientLocales(request); // Returns string | string[] | undefined
 
-    if (!locales) return null;
+    if (!locales) {
+      return null;
+    }
 
-    if (Array.isArray(locales)) return this.fromSupported(locales.join(","));
+    // If locales is an array, join it back into a string that 'pick' can parse.
+    // If it's already a string, use it directly.
+    const localeString = Array.isArray(locales) ? locales.join(",") : locales;
 
-    return this.fromSupported(locales);
+    // Pass the string to fromSupported, which correctly calls 'pick'
+    return this.fromSupported(localeString);
   }
 
   private fromSupported(language: string | null) {
+    // Use pick with strict first, then loose if needed
     return (
       pick(
         this.options.supportedLanguages,
-        language ?? this.options.fallbackLanguage,
+        language ?? "", // Provide empty string if language is null
         { loose: false },
       ) ||
       pick(
         this.options.supportedLanguages,
-        language ?? this.options.fallbackLanguage,
+        language ?? "", // Provide empty string if language is null
         { loose: true },
-      )
+      ) ||
+      null // Return null explicitly if pick fails
     );
   }
 }
