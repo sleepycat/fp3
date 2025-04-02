@@ -23,6 +23,8 @@ export default function Header() {
 					alt={t`The logo of the RCMP`}
 					src={logo}
 					className={css`float: left; padding: 0 1em;`}
+					width="90px"
+					height="66.86px"
 				/>
 				<Trans>
 					Royal Canadian
