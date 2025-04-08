@@ -63,8 +63,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 const mainClass = css`
   width: 80%;
+  height: 100%;
   margin: auto auto;
-  flex: 1 0 auto;
 `;
 
 export type RootLoaderType = typeof loader;
