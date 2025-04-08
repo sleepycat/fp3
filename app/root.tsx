@@ -24,8 +24,14 @@ import stylesheet from "./app.css?url";
 export const links: LinksFunction = () => [
 	// ...
 	{ rel: "icon", href: favicon, type: "image/x-icon" },
-	{ rel: "stylesheet", href: stylesheet },
-	{ rel: "preload", as: "font", href: font, type: "font/woff2" },
+	{ rel: "stylesheet", href: stylesheet, crossOrigin: "true" },
+	{
+		rel: "preload",
+		as: "font",
+		href: font,
+		type: "font/woff2",
+		crossOrigin: "true",
+	},
 ];
 
 export async function action({ request }: ActionFunctionArgs) {
