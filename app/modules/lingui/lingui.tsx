@@ -65,6 +65,8 @@ export function useOptimisticLocale() {
 }
 
 export function LocaleSelector(props: ComponentProps<"select">) {
+	// use a select for languages because we want to support
+	//  more than just fr/en.
 	const languages = getLanguages();
 	const { locale, setLocale } = useLocaleSelector();
 
@@ -72,6 +74,7 @@ export function LocaleSelector(props: ComponentProps<"select">) {
 		<select
 			aria-label={i18n._("Switch language")}
 			onChange={(e) => setLocale(e.currentTarget.value)}
+			defaultValue={i18n.locale}
 			{...props}
 		>
 			{languages.map((language) => (
