@@ -14,7 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: app/Header.tsx:38
+#: app/Header.tsx:40
+#: app/routes.ts:7
 msgid "/terms-and-conditions"
 msgstr ""
 
@@ -44,7 +45,7 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: app/Header.tsx:36
+#: app/Header.tsx:38
 msgid "Home"
 msgstr ""
 
@@ -70,7 +71,7 @@ msgstr ""
 msgid "Royal Canadian Mounted Police"
 msgstr ""
 
-#: app/Header.tsx:27
+#: app/Header.tsx:29
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr ""
 
@@ -78,7 +79,7 @@ msgstr ""
 msgid "Symbol of the Government of Canada"
 msgstr ""
 
-#: app/Header.tsx:39
+#: app/Header.tsx:41
 msgid "terms"
 msgstr ""
 

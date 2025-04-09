@@ -14,7 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: app/Header.tsx:38
+#: app/Header.tsx:40
+#: app/routes.ts:7
 msgid "/terms-and-conditions"
 msgstr "/avis"
 
@@ -44,7 +45,7 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
-#: app/Header.tsx:36
+#: app/Header.tsx:38
 msgid "Home"
 msgstr "Accueil"
 
@@ -70,7 +71,7 @@ msgstr "Documentation Remix"
 msgid "Royal Canadian Mounted Police"
 msgstr "Gendarmerie royale du Canada"
 
-#: app/Header.tsx:27
+#: app/Header.tsx:29
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr "Gendarmerie royale<0/> du Canada"
 
@@ -78,7 +79,7 @@ msgstr "Gendarmerie royale<0/> du Canada"
 msgid "Symbol of the Government of Canada"
 msgstr "Symbole du gouvernement du Canada"
 
-#: app/Header.tsx:39
+#: app/Header.tsx:41
 msgid "terms"
 msgstr "avis"
 
