@@ -74,6 +74,12 @@ const linkClass = css`
 	padding: 0 1em;
 `;
 
+const navClass = css`
+  background-color: #f1f2f3;
+	border-top: 2em solid #b50315;
+	border-bottom: 4px solid rgb(130, 55, 62)
+`;
+
 export type RootLoaderType = typeof loader;
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -95,7 +101,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<Header />
-				<nav>
+				<nav className={navClass}>
 					<Link className={linkClass} to="/">
 						<Trans>Home</Trans>
 					</Link>

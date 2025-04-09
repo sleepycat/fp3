@@ -9,6 +9,7 @@ export default function Footer() {
   flex-shrink: 0;
   justify-content: space-between;
   background-color: #f1f2f3;
+  border-top: 1px solid rgb(51, 51, 51);
 `;
 
 	const canadaRed = css`fill: #EA2D37;`;
