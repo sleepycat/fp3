@@ -9,12 +9,8 @@ export default function Header() {
 	const headerClass = css`
   padding: 1em;
   display: flex;
- justify-content: space-between;
- `;
-
-	const linkClass = css`
-		padding: 0 1em;
-	`;
+  justify-content: space-between;
+`;
 
 	return (
 		<header className={headerClass}>
@@ -33,14 +29,6 @@ export default function Header() {
 				</Trans>
 			</section>
 			<LocaleSelector />
-			<nav>
-				<Link className={linkClass} to="/">
-					<Trans>Home</Trans>
-				</Link>
-				<Link className={linkClass} to={i18n._("/terms-and-conditions")}>
-					<Trans>terms</Trans>
-				</Link>
-			</nav>
 		</header>
 	);
 }

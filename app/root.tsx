@@ -38,17 +38,20 @@ export async function action({ request }: ActionFunctionArgs) {
 	const formData = await request.formData();
 
 	const locale = formData.get("locale") ?? "en";
-
-	return data(null, {
-		headers: {
-			"Set-Cookie": await localeCookie.serialize(locale),
+	console.log({ location: "root.tsx action", formData });
+	return data(
+		{ locale },
+		{
+			headers: {
+				"Set-Cookie": await localeCookie.serialize(locale),
+			},
 		},
-	});
+	);
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
 	const locale = await linguiServer.getLocale(request);
-
+	console.log({ location: "root.tsx loader", locale });
 	return data(
 		{
 			locale,
@@ -65,6 +68,10 @@ const mainClass = css`
   width: 80%;
   height: 100%;
   margin: auto auto;
+`;
+
+const linkClass = css`
+	padding: 0 1em;
 `;
 
 export type RootLoaderType = typeof loader;
@@ -88,6 +95,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<Header />
+				<nav>
+					<Link className={linkClass} to="/">
+						<Trans>Home</Trans>
+					</Link>
+					<Link className={linkClass} to={i18n._("/terms-and-conditions")}>
+						<Trans>terms</Trans>
+					</Link>
+				</nav>
 				<main className={mainClass}>{children}</main>
 				<Footer />
 				<ScrollRestoration />
