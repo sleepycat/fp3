@@ -1,7 +1,8 @@
+/// <reference types="panda" />
+/// <reference types="vitest" />
 import { lingui } from "@lingui/vite-plugin";
 import { reactRouter } from "@react-router/dev/vite";
 import autoprefixer from "autoprefixer";
-/// <reference types="panda" />
 import pandacss from "@pandacss/dev/postcss";
 import { defineConfig } from "vite";
 import macrosPlugin from "vite-plugin-babel-macros";
@@ -12,5 +13,12 @@ export default defineConfig({
 	server: {
 		port: 3000,
 	},
-	plugins: [reactRouter(), macrosPlugin(), lingui(), tsconfigPaths()],
+	// To understand the VITEST thing
+	// refer to: https://akoskm.com/react-router-vitest-example
+	plugins: [
+		!process.env.VITEST && reactRouter(),
+		macrosPlugin(),
+		lingui(),
+		tsconfigPaths(),
+	],
 });

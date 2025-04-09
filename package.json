@@ -11,6 +11,7 @@
 		"dev:rr": "react-router dev --port 3000",
 		"dev:css": "panda --watch",
 		"lint": "eslint --fix --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+		"test": "vitest run --reporter=verbose",
 		"extract": "lingui extract --clean",
 		"compile": "lingui compile",
 		"start": "react-router-serve ./build/server/index.js",
@@ -37,6 +38,7 @@
 		"@lingui/vite-plugin": "^4.10.0",
 		"@pandacss/dev": "^0.53.3",
 		"@react-router/dev": "^7.5.0",
+		"@testing-library/react": "^16.3.0",
 		"@types/accept-language-parser": "^1.5.6",
 		"@types/react": "^18.2.20",
 		"@types/react-dom": "^18.2.7",
@@ -49,10 +51,12 @@
 		"eslint-plugin-jsx-a11y": "^6.7.1",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
+		"jsdom": "^26.0.0",
 		"typescript": "^5.1.6",
 		"vite": "^5.1.0",
 		"vite-plugin-babel-macros": "^1.0.6",
-		"vite-tsconfig-paths": "^4.2.1"
+		"vite-tsconfig-paths": "^4.2.1",
+		"vitest": "^3.1.1"
 	},
 	"engines": {
 		"node": ">=18.0.0"
