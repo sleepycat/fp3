@@ -1,9 +1,8 @@
-import { t, Trans } from "@lingui/macro";
+import { i18n } from "@lingui/core";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import type { LinksFunction } from "react-router";
-import { data } from "react-router";
 import {
-	Link,
+	data,
 	Links,
 	Meta,
 	Outlet,
@@ -13,9 +12,9 @@ import {
 import { linguiServer, localeCookie } from "./modules/lingui/lingui.server";
 import { loadCatalog, useLocale } from "./modules/lingui/lingui";
 import { useEffect } from "react";
-import { i18n } from "@lingui/core";
 import Header from "./Header";
 import Footer from "./Footer";
+import Navigation from "./Navigation";
 import { css } from "../styled-system/css";
 import favicon from "./images/favicon.ico?url";
 import font from "./fonts/OverusedGrotesk-VF.woff2?url";
@@ -70,16 +69,6 @@ const mainClass = css`
   margin: auto auto;
 `;
 
-const linkClass = css`
-	padding: 0 1em;
-`;
-
-const navClass = css`
-  background-color: #f1f2f3;
-	border-top: 2em solid #b50315;
-	border-bottom: 4px solid rgb(130, 55, 62)
-`;
-
 export type RootLoaderType = typeof loader;
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -101,14 +90,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<Header />
-				<nav className={navClass}>
-					<Link className={linkClass} to="/">
-						<Trans>Home</Trans>
-					</Link>
-					<Link className={linkClass} to={i18n._("/terms-and-conditions")}>
-						<Trans>terms</Trans>
-					</Link>
-				</nav>
+				<Navigation />
 				<main className={mainClass}>{children}</main>
 				<Footer />
 				<ScrollRestoration />
