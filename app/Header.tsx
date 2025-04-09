@@ -12,21 +12,29 @@ export default function Header() {
   justify-content: space-between;
 `;
 
+	const logoSectionClass = css`
+  display: flex;
+  align-items: end;
+  line-height: 1em;
+`;
+
 	return (
 		<header className={headerClass}>
 			<section className={css`width: 15em;`}>
-				<img
-					alt={t`The logo of the RCMP`}
-					src={logo}
-					className={css`float: left; padding: 0 1em;`}
-					width="90px"
-					height="66.86px"
-				/>
-				<Trans>
-					Royal Canadian
-					<br />
-					Mounted Police
-				</Trans>
+				<div className={logoSectionClass}>
+					<img
+						alt={t`The logo of the RCMP`}
+						src={logo}
+						className={css`float: left; padding: 0 1em;`}
+						width="90px"
+						height="66.86px"
+					/>
+					<Trans>
+						Royal Canadian
+						<br />
+						Mounted Police
+					</Trans>
+				</div>
 			</section>
 			<LocaleSelector />
 		</header>
