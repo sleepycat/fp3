@@ -14,5 +14,12 @@ export function fromHeader(
     const preferred = acceptsLanguages(request);
     if (!preferred) return null;
     
-    return supportedLanguages.find(lang => preferred.includes(lang)) ?? null;
+    // Find the first preferred language that is supported
+    for (const lang of preferred) {
+        if (supportedLanguages.includes(lang)) {
+            return lang;
+        }
+    }
+    
+    return null;
 }
