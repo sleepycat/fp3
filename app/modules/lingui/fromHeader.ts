@@ -8,14 +8,11 @@ export function fromHeader(
     request: Request,
     { supportedLanguages }: { supportedLanguages: string[] }
 ): string | null {
+    const acceptLanguage = request.headers.get("accept-language");
+    if (!acceptLanguage) return null;
+    
     const preferred = acceptsLanguages(request);
     if (!preferred) return null;
     
-    for (const lang of preferred) {
-        if (supportedLanguages.includes(lang)) {
-            return lang;
-        }
-    }
-    
-    return null;
+    return supportedLanguages.find(lang => preferred.includes(lang)) ?? null;
 }

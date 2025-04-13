@@ -22,4 +22,12 @@ describe("fromSearchParams", () => {
         expect(language).toBeNull();
     });
 
+    it("should return null if the language is not supported", () => {
+        const request = new Request("http://example.com/?lang=fr");
+        const language = fromSearchParams(request, {
+            paramName: "lang",
+            supportedLanguages: ["en", "es"]
+        });
+        expect(language).toBeNull();
+    });
 });

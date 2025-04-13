@@ -30,4 +30,19 @@ describe("fromCookie", () => {
         });
         expect(language).toBeNull();
     });
+
+    it("should return null if the language is not supported", async () => {
+        const cookie = createCookie("lang");
+        const request = new Request("http://example.com", {
+            headers: {
+                "Cookie": await cookie.serialize("fr")
+            },
+        });
+        const language = await fromCookie(request, {
+            cookie,
+            supportedLanguages: ["en", "es"],
+            keyName: "lang"
+        });
+        expect(language).toBeNull();
+    });
 });

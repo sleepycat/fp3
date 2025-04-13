@@ -21,7 +21,7 @@ describe("fromSessionStorage", () => {
                 Cookie: await sessionStorage.commitSession(session)
             }
         });
-        
+
         const language = await fromSessionStorage(request, {
             sessionStorage,
             sessionKey: "lng",
@@ -39,13 +39,36 @@ describe("fromSessionStorage", () => {
             }
         });
         const session = await sessionStorage.getSession();
-    
+
         const request = new Request("http://example.com", {
             headers: {
                 Cookie: await sessionStorage.commitSession(session)
             }
         }); 
-        
+
+        const language = await fromSessionStorage(request, {
+            sessionStorage,
+            sessionKey: "lng",
+            supportedLanguages: ["en", "es"]
+        });
+        expect(language).toBeNull();
+    });
+
+    it("should return null if the language is not supported", async () => {
+        const sessionStorage = createMemorySessionStorage({
+            cookie: {
+                secrets: ["test"]
+            }
+        });
+        const session = await sessionStorage.getSession();
+        session.set("lng", "fr");
+
+        const request = new Request("http://example.com", {
+            headers: {
+                Cookie: await sessionStorage.commitSession(session)
+            }
+        });
+
         const language = await fromSessionStorage(request, {
             sessionStorage,
             sessionKey: "lng",
