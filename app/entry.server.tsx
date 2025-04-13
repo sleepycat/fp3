@@ -13,10 +13,20 @@ import { createReadableStreamFromReadable } from "@react-router/node";
 import { ServerRouter } from "react-router";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
-import { linguiServer } from "./modules/lingui/lingui.server";
 import { loadCatalog } from "./modules/lingui/lingui";
+import { createLanguageDetector } from "./modules/lingui/getLocale";
+import config from "./modules/lingui/config";
+import { localeCookie } from "./sessions.server";
 
 export const streamTimeout = 5000;
+
+// Configure the language detector
+export const getLocale = createLanguageDetector({
+	supportedLanguages: config.locales,
+	fallbackLanguage: (!!config.fallbackLocales && config.fallbackLocales?.default) || "en",
+	cookie: localeCookie,
+	cookieKey: "lng"
+});
 
 export default function handleRequest(
 	request: Request,
@@ -49,7 +59,7 @@ async function handleBotRequest(
 	responseHeaders: Headers,
 	reactRouterContext: EntryContext,
 ) {
-	const locale = await linguiServer.getLocale(request);
+	const locale = await getLocale(request);
 	await loadCatalog(locale);
 
 	return new Promise((resolve, reject) => {
@@ -100,7 +110,7 @@ async function handleBrowserRequest(
 	responseHeaders: Headers,
 	reactRouterContext: EntryContext,
 ) {
-	const locale = await linguiServer.getLocale(request);
+	const locale = await getLocale(request);
 	await loadCatalog(locale);
 
 	return new Promise((resolve, reject) => {

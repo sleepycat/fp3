@@ -1,4 +1,4 @@
-import { createCookieSessionStorage } from "react-router";
+import { createCookieSessionStorage, createCookie } from "react-router";
 
 type SessionData = {
   userId: string;
@@ -31,3 +31,10 @@ const { getSession, commitSession, destroySession } =
 
 export { getSession, commitSession, destroySession };
 export type { SessionData, SessionFlashData };
+
+export const localeCookie = createCookie("lng", {
+    path: "/",
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
+});

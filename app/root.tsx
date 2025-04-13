@@ -9,7 +9,6 @@ import {
 	Scripts,
 	ScrollRestoration,
 } from "react-router";
-import { linguiServer, localeCookie } from "./modules/lingui/lingui.server";
 import { loadCatalog, useLocale } from "./modules/lingui/lingui";
 import { useEffect } from "react";
 import Header from "./Header";
@@ -19,17 +18,19 @@ import { css } from "../styled-system/css";
 import favicon from "./images/favicon.ico?url";
 import font from "./fonts/OverusedGrotesk-VF.woff2?url";
 import stylesheet from "./app.css?url";
+import { getLocale } from "./entry.server";
+import { localeCookie } from "./sessions.server";
 
 export const links: LinksFunction = () => [
 	// ...
 	{ rel: "icon", href: favicon, type: "image/x-icon" },
-	{ rel: "stylesheet", href: stylesheet, crossOrigin: "true" },
+	{ rel: "stylesheet", href: stylesheet, crossOrigin: "anonymous" },
 	{
 		rel: "preload",
 		as: "font",
 		href: font,
 		type: "font/woff2",
-		crossOrigin: "true",
+		crossOrigin: "anonymous",
 	},
 ];
 
@@ -49,7 +50,7 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-	const locale = await linguiServer.getLocale(request);
+	const locale = await getLocale(request);
 	console.log({ location: "root.tsx loader", locale });
 	return data(
 		{
