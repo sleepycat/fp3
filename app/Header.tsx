@@ -1,9 +1,7 @@
-import { i18n } from "@lingui/core";
 import { LocaleSelector } from "~/modules/lingui/lingui";
 import { t, Trans } from "@lingui/macro";
 import { css } from "../styled-system/css";
 import logo from "./images/rcmp-crest-black.svg?url";
-import { Link } from "react-router";
 
 export default function Header() {
 	const headerClass = css`
