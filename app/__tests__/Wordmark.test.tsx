@@ -42,6 +42,21 @@ describe("<Wordmark.SVG />", () => {
 		const image = screen.getByLabelText("arbitraryprops");
 		expect(image.getAttribute("data-foo")).toEqual("bar");
 	});
+
+	it("passing a <title> for accessibility works", async () => {
+		render(
+			<Wordmark.SVG role="img" data-foo="this one!">
+				<title>some title</title>
+				<Wordmark.Flag />
+				<Wordmark.Text />
+			</Wordmark.SVG>,
+		);
+
+		const titleElement = screen.getByTitle("some title");
+		expect(titleElement.parentElement?.getAttribute("data-foo")).toEqual(
+			"this one!",
+		);
+	});
 });
 
 describe("<Wordmark.Flag />", () => {
@@ -53,7 +68,7 @@ describe("<Wordmark.Flag />", () => {
 			</Wordmark.SVG>,
 		);
 		const flag = container.querySelector('[data-foo="bar"]');
-		expect(flag.tagName).toEqual("path");
+		expect(flag?.tagName).toEqual("path");
 	});
 });
 describe("<Wordmark.Text/>", () => {

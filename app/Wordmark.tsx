@@ -18,7 +18,7 @@ function Text(props) {
 
 const SVG = ({ children, ...rest }) => {
 	return (
-		// biome-ignore lint/a11y/noSvgWithoutTitle: we're exposing this so people can add aria-labels to it.
+		// biome-ignore lint/a11y/noSvgWithoutTitle: we're exposing this so people can add aria-labels or pass <title> to it.
 		<svg
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ const SVG = ({ children, ...rest }) => {
 			preserveAspectRatio="xMinYMin meet"
 			{...rest}
 		>
-			<g>{children}</g>
+			{children}
 		</svg>
 	);
 };
