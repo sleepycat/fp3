@@ -93,16 +93,19 @@ export function useLocaleSelector() {
 	const optimisticLocale = useOptimisticLocale();
 	const locale = optimisticLocale ?? data?.locale ?? "en";
 
-	const setLocale = (locale: string) => {
-		fetcher.submit(
-			{
-				locale,
-			},
-			{
-				method: "POST",
-				action: "/",
-			},
-		);
+	const setLocale = (newLocale: string) => {
+		// Only submit if the locale is actually changing
+		if (newLocale !== locale) {
+			fetcher.submit(
+				{
+					locale: newLocale,
+				},
+				{
+					method: "POST",
+					action: "/",
+				},
+			);
+		}
 	};
 
 	return {

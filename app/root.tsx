@@ -59,6 +59,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 		{
 			headers: {
 				"Set-Cookie": await localeCookie.serialize(locale),
+				"Cache-Control": "private, max-age=10"
 			},
 		},
 	);

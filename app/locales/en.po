@@ -14,14 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: app/Header.tsx:40
-#: app/routes.ts:7
-msgid "/terms-and-conditions"
+#: app/modules/lingui/lingui.tsx:75
+msgid "Switch language"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: app/modules/lingui/lingui.tsx:73
-msgid "Switch language"
+#: app/Navigation.tsx:25
+msgid "/terms-and-conditions"
 msgstr ""
 
 #: app/routes/home.tsx:30
@@ -45,7 +44,7 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: app/Header.tsx:38
+#: app/Navigation.tsx:23
 msgid "Home"
 msgstr ""
 
@@ -53,7 +52,7 @@ msgstr ""
 msgid "Legal jargon"
 msgstr ""
 
-#: app/Footer.tsx:17
+#: app/Footer.tsx:18
 msgid "links"
 msgstr ""
 
@@ -71,22 +70,22 @@ msgstr ""
 msgid "Royal Canadian Mounted Police"
 msgstr ""
 
-#: app/Header.tsx:29
+#: app/Header.tsx:32
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr ""
 
-#: app/Footer.tsx:19
+#: app/Footer.tsx:20
 msgid "Symbol of the Government of Canada"
 msgstr ""
 
-#: app/Header.tsx:41
-msgid "terms"
+#: app/Navigation.tsx:28
+msgid "Terms"
 msgstr ""
 
 #: app/routes/termsAndConditions.tsx:21
 msgid "Terms and Conditions"
 msgstr ""
 
-#: app/Header.tsx:23
+#: app/Header.tsx:26
 msgid "The logo of the RCMP"
 msgstr ""

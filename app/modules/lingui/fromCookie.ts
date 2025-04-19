@@ -2,7 +2,7 @@ import type { Cookie } from "react-router";
 
 export async function fromCookie(
     request: Request,
-    { keyName = "lng", cookie, supportedLanguages }: { keyName?: string; cookie: Cookie; supportedLanguages: string[] }
+    { keyName = "locale", cookie, supportedLanguages }: { keyName?: string; cookie: Cookie; supportedLanguages: string[] }
 ): Promise<string | null> {
     const cookieHeader = request.headers.get("Cookie");
     if (!cookieHeader) return null;

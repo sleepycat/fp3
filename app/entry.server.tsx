@@ -17,15 +17,17 @@ import { loadCatalog } from "./modules/lingui/lingui";
 import { createLanguageDetector } from "./modules/lingui/getLocale";
 import config from "./modules/lingui/config";
 import { localeCookie } from "./sessions.server";
+import { createContext } from "./context";
 
 export const streamTimeout = 5000;
 
 // Configure the language detector
 export const getLocale = createLanguageDetector({
 	supportedLanguages: config.locales,
-	fallbackLanguage: (!!config.fallbackLocales && config.fallbackLocales?.default) || "en",
+	fallbackLanguage:
+		(!!config.fallbackLocales && config.fallbackLocales?.default) || "en",
 	cookie: localeCookie,
-	cookieKey: "lng"
+	cookieKey: "locale",
 });
 
 export default function handleRequest(
@@ -36,7 +38,7 @@ export default function handleRequest(
 	// This is ignored so we can keep it in the template for visibility.  Feel
 	// free to delete this parameter in your app if you're not using it!
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	loadContext: AppLoadContext,
+	loadContext: AppLoadContext = createContext(),
 ) {
 	return isbot(request.headers.get("user-agent") || "")
 		? handleBotRequest(
@@ -44,12 +46,14 @@ export default function handleRequest(
 				responseStatusCode,
 				responseHeaders,
 				reactRouterContext,
+				loadContext,
 			)
 		: handleBrowserRequest(
 				request,
 				responseStatusCode,
 				responseHeaders,
 				reactRouterContext,
+				loadContext,
 			);
 }
 
@@ -58,6 +62,7 @@ async function handleBotRequest(
 	responseStatusCode: number,
 	responseHeaders: Headers,
 	reactRouterContext: EntryContext,
+	loadContext: AppLoadContext,
 ) {
 	const locale = await getLocale(request);
 	await loadCatalog(locale);
@@ -109,6 +114,7 @@ async function handleBrowserRequest(
 	responseStatusCode: number,
 	responseHeaders: Headers,
 	reactRouterContext: EntryContext,
+	loadContext: AppLoadContext,
 ) {
 	const locale = await getLocale(request);
 	await loadCatalog(locale);

@@ -1,8 +1,7 @@
-import { t, Trans } from "@lingui/macro";
-import { i18n } from "@lingui/core";
+import { Trans, t } from "@lingui/macro";
 import { NavLink as BaseNav } from "react-router";
-import { styled } from "../styled-system/jsx";
 import { css } from "../styled-system/css";
+import { styled } from "../styled-system/jsx";
 
 const NavLink = styled(BaseNav)`
 	padding: 0 1em;
@@ -23,9 +22,16 @@ export default function Navigation() {
 			<NavLink to="/">
 				<Trans>Home</Trans>
 			</NavLink>
-			<NavLink to={i18n._("/terms-and-conditions")}>
-				<Trans>terms</Trans>
-			</NavLink>
+			{/* @ts-ignore: Typescript doesn't seem to have correct type info for Trans. */}
+			<Trans
+				id="/terms-and-conditions"
+				render={({ translation }) => {
+					// TODO: This code works but typescript is big mad
+					// about the value assigned to the NavLink to prop
+					// @ts-ignore Type 'ReactNode' is not assignable to type 'To'
+					return <NavLink to={translation}>{t`Terms`}</NavLink>;
+				}}
+			/>
 		</nav>
 	);
 }

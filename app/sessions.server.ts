@@ -32,7 +32,7 @@ const { getSession, commitSession, destroySession } =
 export { getSession, commitSession, destroySession };
 export type { SessionData, SessionFlashData };
 
-export const localeCookie = createCookie("lng", {
+export const localeCookie = createCookie("locale", {
     path: "/",
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",

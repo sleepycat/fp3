@@ -2,7 +2,7 @@ import { acceptsLanguages } from "@std/http/negotiation";
 
 export function fromSearchParams(
     request: Request,
-    { paramName = "lng", supportedLanguages }: { paramName?: string; supportedLanguages: string[] }
+    { paramName = "locale", supportedLanguages }: { paramName?: string; supportedLanguages: string[] }
 ): string | null {
     const url = new URL(request.url);
     const language = url.searchParams.get(paramName);

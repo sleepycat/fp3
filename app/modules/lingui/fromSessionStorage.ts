@@ -2,7 +2,7 @@ import type { SessionStorage } from "react-router";
 
 export async function fromSessionStorage(
     request: Request,
-    { sessionStorage, sessionKey = "lng", supportedLanguages }: { 
+    { sessionStorage, sessionKey = "locale", supportedLanguages }: { 
         sessionStorage: SessionStorage; 
         sessionKey?: string;
         supportedLanguages: string[];

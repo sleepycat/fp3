@@ -14,7 +14,7 @@ describe("fromSessionStorage", () => {
             }
         });
         const session = await sessionStorage.getSession();
-        session.set("lng", "en");
+        session.set("locale", "en");
         
         const request = new Request("http://example.com", {
             headers: {
@@ -24,7 +24,7 @@ describe("fromSessionStorage", () => {
 
         const language = await fromSessionStorage(request, {
             sessionStorage,
-            sessionKey: "lng",
+            sessionKey: "locale",
             supportedLanguages: ["en", "es"]
         });
         expect(language).toBe("en");
@@ -48,7 +48,7 @@ describe("fromSessionStorage", () => {
 
         const language = await fromSessionStorage(request, {
             sessionStorage,
-            sessionKey: "lng",
+            sessionKey: "locale",
             supportedLanguages: ["en", "es"]
         });
         expect(language).toBeNull();
@@ -61,7 +61,7 @@ describe("fromSessionStorage", () => {
             }
         });
         const session = await sessionStorage.getSession();
-        session.set("lng", "fr");
+        session.set("locale", "fr");
 
         const request = new Request("http://example.com", {
             headers: {
@@ -71,7 +71,7 @@ describe("fromSessionStorage", () => {
 
         const language = await fromSessionStorage(request, {
             sessionStorage,
-            sessionKey: "lng",
+            sessionKey: "locale",
             supportedLanguages: ["en", "es"]
         });
         expect(language).toBeNull();

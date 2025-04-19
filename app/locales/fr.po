@@ -14,15 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: app/Header.tsx:40
-#: app/routes.ts:7
-msgid "/terms-and-conditions"
-msgstr "/avis"
-
-#. js-lingui-explicit-id
-#: app/modules/lingui/lingui.tsx:73
+#: app/modules/lingui/lingui.tsx:75
 msgid "Switch language"
 msgstr "basculer la langue"
+
+#. js-lingui-explicit-id
+#: app/Navigation.tsx:25
+msgid "/terms-and-conditions"
+msgstr "/avis"
 
 #: app/routes/home.tsx:30
 msgid "15m Quickstart Blog Tutorial"
@@ -45,7 +44,7 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
-#: app/Header.tsx:38
+#: app/Navigation.tsx:23
 msgid "Home"
 msgstr "Accueil"
 
@@ -53,7 +52,7 @@ msgstr "Accueil"
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
 
-#: app/Footer.tsx:17
+#: app/Footer.tsx:18
 msgid "links"
 msgstr "liens"
 
@@ -71,22 +70,22 @@ msgstr "Documentation Remix"
 msgid "Royal Canadian Mounted Police"
 msgstr "Gendarmerie royale du Canada"
 
-#: app/Header.tsx:29
+#: app/Header.tsx:32
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr "Gendarmerie royale<0/> du Canada"
 
-#: app/Footer.tsx:19
+#: app/Footer.tsx:20
 msgid "Symbol of the Government of Canada"
 msgstr "Symbole du gouvernement du Canada"
 
-#: app/Header.tsx:41
-msgid "terms"
-msgstr "avis"
+#: app/Navigation.tsx:28
+msgid "Terms"
+msgstr "Avis"
 
 #: app/routes/termsAndConditions.tsx:21
 msgid "Terms and Conditions"
 msgstr "Avis"
 
-#: app/Header.tsx:23
+#: app/Header.tsx:26
 msgid "The logo of the RCMP"
 msgstr "Le logo de la GRC"

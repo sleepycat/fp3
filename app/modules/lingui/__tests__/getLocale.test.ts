@@ -6,7 +6,7 @@ describe("getLocale", () => {
     const defaultOptions = {
         supportedLanguages: ["en", "es"],
         fallbackLanguage: "en",
-        cookie: createCookie("lng"),
+        cookie: createCookie("locale"),
         sessionStorage: createMemorySessionStorage({
             cookie: {
                 secrets: ["test"]
@@ -18,7 +18,7 @@ describe("getLocale", () => {
         const getLocale = createLanguageDetector(defaultOptions);
         
         // Test searchParams first (should override cookie, session, and header)
-        const request1 = new Request("http://example.com/?lng=es", {
+        const request1 = new Request("http://example.com/?locale=es", {
             headers: {
                 "Cookie": await defaultOptions.cookie.serialize("en"),
                 "accept-language": "en, es;q=0.9"
@@ -37,7 +37,7 @@ describe("getLocale", () => {
 
         // Test session third (should override header)
         const session = await defaultOptions.sessionStorage.getSession();
-        session.set("lng", "es");
+        session.set("locale", "es");
         const request3 = new Request("http://example.com", {
             headers: {
                 "Cookie": await defaultOptions.sessionStorage.commitSession(session),
@@ -62,7 +62,7 @@ describe("getLocale", () => {
         });
 
         // Should get from header even though searchParams has a value
-        const request = new Request("http://example.com/?lng=es", {
+        const request = new Request("http://example.com/?locale=es", {
             headers: {
                 "accept-language": "en, es;q=0.9",
                 "Cookie": await defaultOptions.cookie.serialize("es")
