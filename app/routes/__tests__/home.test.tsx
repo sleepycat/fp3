@@ -1,9 +1,10 @@
 /**
  * @jest-environment jsdom
  */
+import type { ReactNode } from "react";
 import { describe, it, expect } from "vitest";
 import { data, createRoutesStub } from "react-router";
-import { render, act, screen, waitFor } from "@testing-library/react";
+import { render, act, screen } from "@testing-library/react";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 
@@ -16,7 +17,7 @@ i18n.load({
 	fr,
 });
 
-const TestingProvider = ({ children }: any) => (
+const TestingProvider = ({ children }: { children: ReactNode }) => (
 	<I18nProvider i18n={i18n}>{children}</I18nProvider>
 );
 
@@ -39,7 +40,7 @@ describe("/", () => {
 
 		// render the app stub at "/login"
 		render(<Stub initialEntries={["/"]} />, { wrapper: TestingProvider });
-		const heading = await screen.findByText("Federal Policing Public Portal");
+		const heading = await screen.findByRole("heading");
 		expect(heading?.textContent).toContain("Federal");
 	});
 });
