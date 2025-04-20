@@ -14,14 +14,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
+#: app/Footer.tsx:38
+msgid "/terms-and-conditions"
+msgstr "/avis"
+
+#. js-lingui-explicit-id
 #: app/modules/lingui/lingui.tsx:75
 msgid "Switch language"
 msgstr "basculer la langue"
 
 #. js-lingui-explicit-id
-#: app/Navigation.tsx:25
-msgid "/terms-and-conditions"
-msgstr "/avis"
+#: app/Navigation.tsx:31
+msgid "/drug-seizures"
+msgstr "/saisies-de-drogues"
 
 #: app/routes/home.tsx:30
 msgid "15m Quickstart Blog Tutorial"
@@ -31,6 +36,10 @@ msgstr "Tutoriel de démarrage rapide de 15 minutes pour un blog"
 #: app/routes/termsAndConditions.tsx:6
 msgid "An Unexpected Error Occured"
 msgstr "Une erreur inattendue s’est produite."
+
+#: app/Navigation.tsx:37
+msgid "Drug Seizures"
+msgstr "Saisies de drogues"
 
 #: app/modules/lingui/lingui.tsx:20
 msgid "English"
@@ -44,17 +53,13 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
-#: app/Navigation.tsx:23
+#: app/Navigation.tsx:28
 msgid "Home"
 msgstr "Accueil"
 
 #: app/routes/termsAndConditions.tsx:24
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
-
-#: app/Footer.tsx:18
-msgid "links"
-msgstr "liens"
 
 #: app/routes/home.tsx:13
 #: app/routes/termsAndConditions.tsx:13
@@ -74,11 +79,11 @@ msgstr "Gendarmerie royale du Canada"
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr "Gendarmerie royale<0/> du Canada"
 
-#: app/Footer.tsx:20
+#: app/Footer.tsx:48
 msgid "Symbol of the Government of Canada"
 msgstr "Symbole du gouvernement du Canada"
 
-#: app/Navigation.tsx:28
+#: app/Footer.tsx:44
 msgid "Terms"
 msgstr "Avis"
 

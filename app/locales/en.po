@@ -14,13 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
+#: app/Footer.tsx:38
+msgid "/terms-and-conditions"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: app/modules/lingui/lingui.tsx:75
 msgid "Switch language"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: app/Navigation.tsx:25
-msgid "/terms-and-conditions"
+#: app/Navigation.tsx:31
+msgid "/drug-seizures"
 msgstr ""
 
 #: app/routes/home.tsx:30
@@ -30,6 +35,10 @@ msgstr ""
 #: app/routes/home.tsx:6
 #: app/routes/termsAndConditions.tsx:6
 msgid "An Unexpected Error Occured"
+msgstr ""
+
+#: app/Navigation.tsx:37
+msgid "Drug Seizures"
 msgstr ""
 
 #: app/modules/lingui/lingui.tsx:20
@@ -44,16 +53,12 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: app/Navigation.tsx:23
+#: app/Navigation.tsx:28
 msgid "Home"
 msgstr ""
 
 #: app/routes/termsAndConditions.tsx:24
 msgid "Legal jargon"
-msgstr ""
-
-#: app/Footer.tsx:18
-msgid "links"
 msgstr ""
 
 #: app/routes/home.tsx:13
@@ -74,11 +79,11 @@ msgstr ""
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr ""
 
-#: app/Footer.tsx:20
+#: app/Footer.tsx:48
 msgid "Symbol of the Government of Canada"
 msgstr ""
 
-#: app/Navigation.tsx:28
+#: app/Footer.tsx:44
 msgid "Terms"
 msgstr ""
 
