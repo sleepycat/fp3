@@ -15,23 +15,29 @@ const navClass = css`
 	border-top: 2em solid #b50315;
 	border-bottom: 4px solid rgb(130, 55, 62);
 `;
+const contentClass = css`
+  width: 75%;
+  margin: auto;
+`;
 
 export default function Navigation() {
 	return (
 		<nav className={navClass}>
-			<NavLink to="/">
-				<Trans>Home</Trans>
-			</NavLink>
-			{/* @ts-expect-error: Typescript doesn't seem to have correct type info for Trans. */}
-			<Trans
-				id="/terms-and-conditions"
-				render={({ translation }) => {
-					// TODO: This code works but typescript is big mad
-					// about the value assigned to the NavLink to prop
-					// @ts-expect-error Type 'ReactNode' is not assignable to type 'To'
-					return <NavLink to={translation}>{t`Terms`}</NavLink>;
-				}}
-			/>
+			<section className={contentClass}>
+				<NavLink to="/">
+					<Trans>Home</Trans>
+				</NavLink>
+				{/* @ts-expect-error: Typescript doesn't seem to have correct type info for Trans. */}
+				<Trans
+					id="/terms-and-conditions"
+					render={({ translation }) => {
+						// TODO: This code works but typescript is big mad
+						// about the value assigned to the NavLink to prop
+						// @ts-expect-error Type 'ReactNode' is not assignable to type 'To'
+						return <NavLink to={translation}>{t`Terms`}</NavLink>;
+					}}
+				/>
+			</section>
 		</nav>
 	);
 }

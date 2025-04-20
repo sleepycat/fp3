@@ -1,6 +1,9 @@
 import { i18n } from "@lingui/core";
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
-import type { LinksFunction } from "react-router";
+import type {
+	ActionFunctionArgs,
+	LoaderFunctionArgs,
+	LinksFunction,
+} from "react-router";
 import {
 	data,
 	Links,
@@ -38,7 +41,6 @@ export async function action({ request }: ActionFunctionArgs) {
 	const formData = await request.formData();
 
 	const locale = formData.get("locale") ?? "en";
-	console.log({ location: "root.tsx action", formData });
 	return data(
 		{ locale },
 		{
@@ -51,7 +53,6 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export async function loader({ request }: LoaderFunctionArgs) {
 	const locale = await getLocale(request);
-	console.log({ location: "root.tsx loader", locale });
 	return data(
 		{
 			locale,
@@ -59,16 +60,17 @@ export async function loader({ request }: LoaderFunctionArgs) {
 		{
 			headers: {
 				"Set-Cookie": await localeCookie.serialize(locale),
-				"Cache-Control": "private, max-age=10"
+				"Cache-Control": "private, max-age=10",
 			},
 		},
 	);
 }
 
 const mainClass = css`
-  width: 80%;
+  width: 75%;
   height: 100%;
   margin: auto auto;
+  padding: 1em 2em;
 `;
 
 export type RootLoaderType = typeof loader;

@@ -8,6 +8,8 @@ export default function Header() {
   padding: 1em;
   display: flex;
   justify-content: space-between;
+  margin: auto auto;
+  width: 75%;
 `;
 
 	const logoSectionClass = css`
