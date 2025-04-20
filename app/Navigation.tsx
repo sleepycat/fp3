@@ -1,4 +1,6 @@
-import { Trans, t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
+// using the Trans component here not the Trans macro
+import { Trans } from "@lingui/react";
 import { NavLink as BaseNav } from "react-router";
 import { css } from "../styled-system/css";
 import { styled } from "../styled-system/jsx";
@@ -24,9 +26,15 @@ export default function Navigation() {
 	return (
 		<nav className={navClass}>
 			<section className={contentClass}>
-				<NavLink to="/">
-					<Trans>Home</Trans>
-				</NavLink>
+				<Trans
+					id="/"
+					render={({ translation }) => {
+						// TODO: This code works but typescript is big mad
+						// about the value assigned to the NavLink to prop
+						// @ts-expect-error Type 'ReactNode' is not assignable to type 'To'
+						return <NavLink to={translation}>{t`Home`}</NavLink>;
+					}}
+				/>
 				{/* @ts-expect-error: Typescript doesn't seem to have correct type info for Trans. */}
 				<Trans
 					id="/drug-seizures"

@@ -1,4 +1,6 @@
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
+// using the Trans component here not the Trans macro
+import { Trans } from "@lingui/react";
 import Wordmark from "./Wordmark";
 import { css } from "../styled-system/css";
 import { NavLink as BaseNav } from "react-router";

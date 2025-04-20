@@ -1,12 +1,12 @@
 import { i18n } from "@lingui/core";
-import { msg } from "@lingui/macro";
+import { t, msg } from "@lingui/core/macro";
 import {
 	useFetcher,
 	useFetchers,
 	useMatches,
 	useRouteLoaderData,
 } from "react-router";
-import { Trans } from "@lingui/react";
+import { Trans } from "@lingui/react/macro";
 import type { MessageDescriptor } from "@lingui/core";
 import type config from "./config";
 import type { ComponentProps } from "react";
@@ -79,7 +79,7 @@ export function LocaleSelector(props: ComponentProps<"select">) {
 		>
 			{languages.map((language) => (
 				<option key={language.key} value={language.key}>
-					<Trans id={language.label.id} />
+					{t(language.label.id)}
 				</option>
 			))}
 		</select>

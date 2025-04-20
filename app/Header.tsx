@@ -1,5 +1,6 @@
 import { LocaleSelector } from "~/modules/lingui/lingui";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { css } from "../styled-system/css";
 import logo from "./images/rcmp-crest-black.svg?url";
 
