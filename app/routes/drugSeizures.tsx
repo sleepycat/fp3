@@ -1,10 +1,16 @@
 import { Trans } from "@lingui/react/macro";
 import { Link } from "react-router";
 import { db, save } from "../db";
+import { css } from "../../styled-system/css";
 
 export async function loader({ request }) {
 	return db;
 }
+
+const linkClass = css`
+	color: token(colors.navy);
+  text-decoration: underline;	
+`;
 
 export default function DrugSeizureSummary({
 	loaderData,
@@ -31,7 +37,9 @@ export default function DrugSeizureSummary({
 					</li>
 				)) ?? null}
 			</ul>
-			<Link to="new">add new seizure record</Link>
+			<Link className={linkClass} to="new">
+				<Trans>New seizure record</Trans>
+			</Link>
 		</>
 	);
 }

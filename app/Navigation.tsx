@@ -13,9 +13,9 @@ const NavLink = styled(BaseNav)`
 `;
 
 const navClass = css`
-  background-color: #f1f2f3;
-	border-top: 2em solid #b50315;
-	border-bottom: 4px solid rgb(130, 55, 62);
+  background-color: token(colors.lightgrey);
+	border-top: 2em solid token(colors.rcmpred);
+	border-bottom: 4px solid token(colors.burgundy);
 `;
 const contentClass = css`
   width: 75%;
