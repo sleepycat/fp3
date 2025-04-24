@@ -37,10 +37,18 @@ msgstr "basculer la langue"
 msgid "15m Quickstart Blog Tutorial"
 msgstr "Tutoriel de démarrage rapide de 15 minutes pour un blog"
 
+#: app/routes/newDrugSeizure.tsx:53
+msgid "Amount (grams)"
+msgstr "Quantité (grammes)"
+
 #: app/routes/termsAndConditions.tsx:7
 #: app/routes/home.tsx:7
 msgid "An Unexpected Error Occured"
 msgstr "Une erreur inattendue s’est produite."
+
+#: app/routes/drugSeizures.tsx:34
+msgid "Date"
+msgstr "Date"
 
 #: app/Navigation.tsx:45
 msgid "Drug Seizures"
@@ -58,6 +66,10 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
+#: app/routes/drugSeizures.tsx:31
+msgid "grams"
+msgstr "grammes"
+
 #: app/Navigation.tsx:35
 msgid "Home"
 msgstr "Accueil"
@@ -65,6 +77,10 @@ msgstr "Accueil"
 #: app/routes/termsAndConditions.tsx:25
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
+
+#: app/routes/drugSeizures.tsx:41
+msgid "New seizure record"
+msgstr "Nouveau record de saisie"
 
 #: app/routes/termsAndConditions.tsx:14
 #: app/routes/home.tsx:14
@@ -83,6 +99,15 @@ msgstr "Gendarmerie royale du Canada"
 #: app/Header.tsx:33
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr "Gendarmerie royale<0/> du Canada"
+
+#: app/routes/newDrugSeizure.tsx:58
+msgid "Seizure Date"
+msgstr "Date de la saisie"
+
+#: app/routes/newDrugSeizure.tsx:43
+#: app/routes/drugSeizures.tsx:28
+msgid "Substance"
+msgstr "Substance"
 
 #: app/Footer.tsx:50
 msgid "Symbol of the Government of Canada"

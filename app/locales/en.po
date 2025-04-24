@@ -37,9 +37,17 @@ msgstr ""
 msgid "15m Quickstart Blog Tutorial"
 msgstr ""
 
+#: app/routes/newDrugSeizure.tsx:53
+msgid "Amount (grams)"
+msgstr ""
+
 #: app/routes/termsAndConditions.tsx:7
 #: app/routes/home.tsx:7
 msgid "An Unexpected Error Occured"
+msgstr ""
+
+#: app/routes/drugSeizures.tsx:34
+msgid "Date"
 msgstr ""
 
 #: app/Navigation.tsx:45
@@ -58,12 +66,20 @@ msgstr ""
 msgid "French"
 msgstr ""
 
+#: app/routes/drugSeizures.tsx:31
+msgid "grams"
+msgstr ""
+
 #: app/Navigation.tsx:35
 msgid "Home"
 msgstr ""
 
 #: app/routes/termsAndConditions.tsx:25
 msgid "Legal jargon"
+msgstr ""
+
+#: app/routes/drugSeizures.tsx:41
+msgid "New seizure record"
 msgstr ""
 
 #: app/routes/termsAndConditions.tsx:14
@@ -82,6 +98,15 @@ msgstr ""
 
 #: app/Header.tsx:33
 msgid "Royal Canadian<0/>Mounted Police"
+msgstr ""
+
+#: app/routes/newDrugSeizure.tsx:58
+msgid "Seizure Date"
+msgstr ""
+
+#: app/routes/newDrugSeizure.tsx:43
+#: app/routes/drugSeizures.tsx:28
+msgid "Substance"
 msgstr ""
 
 #: app/Footer.tsx:50
