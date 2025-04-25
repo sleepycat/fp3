@@ -1,3 +1,4 @@
+import { i18n } from "@lingui/core";
 import { Trans } from "@lingui/react/macro";
 import { Form, redirect } from "react-router";
 import { css } from "../../styled-system/css";
@@ -11,8 +12,8 @@ export async function action({ request }) {
 	const formData = await request.formData();
 	const data = Object.fromEntries(formData);
 	db.push(data);
-	// XXX: this will need change based on the locale
-	return redirect("/drug-seizures");
+	// redirect to the url that matches the current langauge
+	return redirect(i18n._("/drug-seizures"));
 }
 
 export default function DrugSeizureForm({
@@ -37,7 +38,9 @@ export default function DrugSeizureForm({
 
 	return (
 		<>
-			<h2>Drug Seizures Form</h2>
+			<h2>
+				<Trans>Drug Seizures Form</Trans>
+			</h2>
 			<Form className={formClass} method="post">
 				<label htmlFor="substance" className={labelClass}>
 					<Trans>Substance</Trans>
@@ -59,7 +62,9 @@ export default function DrugSeizureForm({
 				</label>
 				<input className={inputClass} id="date" name="date" type="date" />
 
-				<button type="submit">Submit Seizure</button>
+				<button type="submit">
+					<Trans>Submit Seizure</Trans>
+				</button>
 			</Form>
 		</>
 	);

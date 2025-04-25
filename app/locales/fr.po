@@ -29,6 +29,11 @@ msgid "/terms-and-conditions"
 msgstr "/avis"
 
 #. js-lingui-explicit-id
+#: app/routes/drugSeizures.tsx:43
+msgid "new"
+msgstr "nouveau"
+
+#. js-lingui-explicit-id
 #: app/modules/lingui/lingui.tsx:75
 msgid "Switch language"
 msgstr "basculer la langue"
@@ -37,7 +42,7 @@ msgstr "basculer la langue"
 msgid "15m Quickstart Blog Tutorial"
 msgstr "Tutoriel de démarrage rapide de 15 minutes pour un blog"
 
-#: app/routes/newDrugSeizure.tsx:53
+#: app/routes/newDrugSeizure.tsx:55
 msgid "Amount (grams)"
 msgstr "Quantité (grammes)"
 
@@ -46,13 +51,17 @@ msgstr "Quantité (grammes)"
 msgid "An Unexpected Error Occured"
 msgstr "Une erreur inattendue s’est produite."
 
-#: app/routes/drugSeizures.tsx:34
+#: app/routes/drugSeizures.tsx:36
 msgid "Date"
 msgstr "Date"
 
 #: app/Navigation.tsx:45
 msgid "Drug Seizures"
 msgstr "Saisies de drogues"
+
+#: app/routes/newDrugSeizure.tsx:41
+msgid "Drug Seizures Form"
+msgstr "Formulaire de saisie de drogue"
 
 #: app/modules/lingui/lingui.tsx:20
 msgid "English"
@@ -66,7 +75,7 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
-#: app/routes/drugSeizures.tsx:31
+#: app/routes/drugSeizures.tsx:33
 msgid "grams"
 msgstr "grammes"
 
@@ -78,7 +87,7 @@ msgstr "Accueil"
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
 
-#: app/routes/drugSeizures.tsx:41
+#: app/routes/drugSeizures.tsx:51
 msgid "New seizure record"
 msgstr "Nouveau record de saisie"
 
@@ -100,12 +109,16 @@ msgstr "Gendarmerie royale du Canada"
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr "Gendarmerie royale<0/> du Canada"
 
-#: app/routes/newDrugSeizure.tsx:58
+#: app/routes/newDrugSeizure.tsx:60
 msgid "Seizure Date"
 msgstr "Date de la saisie"
 
-#: app/routes/newDrugSeizure.tsx:43
-#: app/routes/drugSeizures.tsx:28
+#: app/routes/newDrugSeizure.tsx:65
+msgid "Submit Seizure"
+msgstr "Soumettre la saisie"
+
+#: app/routes/newDrugSeizure.tsx:45
+#: app/routes/drugSeizures.tsx:30
 msgid "Substance"
 msgstr "Substance"
 

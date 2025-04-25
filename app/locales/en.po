@@ -29,6 +29,11 @@ msgid "/terms-and-conditions"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: app/routes/drugSeizures.tsx:43
+msgid "new"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: app/modules/lingui/lingui.tsx:75
 msgid "Switch language"
 msgstr ""
@@ -37,7 +42,7 @@ msgstr ""
 msgid "15m Quickstart Blog Tutorial"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:53
+#: app/routes/newDrugSeizure.tsx:55
 msgid "Amount (grams)"
 msgstr ""
 
@@ -46,12 +51,16 @@ msgstr ""
 msgid "An Unexpected Error Occured"
 msgstr ""
 
-#: app/routes/drugSeizures.tsx:34
+#: app/routes/drugSeizures.tsx:36
 msgid "Date"
 msgstr ""
 
 #: app/Navigation.tsx:45
 msgid "Drug Seizures"
+msgstr ""
+
+#: app/routes/newDrugSeizure.tsx:41
+msgid "Drug Seizures Form"
 msgstr ""
 
 #: app/modules/lingui/lingui.tsx:20
@@ -66,7 +75,7 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: app/routes/drugSeizures.tsx:31
+#: app/routes/drugSeizures.tsx:33
 msgid "grams"
 msgstr ""
 
@@ -78,7 +87,7 @@ msgstr ""
 msgid "Legal jargon"
 msgstr ""
 
-#: app/routes/drugSeizures.tsx:41
+#: app/routes/drugSeizures.tsx:51
 msgid "New seizure record"
 msgstr ""
 
@@ -100,12 +109,16 @@ msgstr ""
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:58
+#: app/routes/newDrugSeizure.tsx:60
 msgid "Seizure Date"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:43
-#: app/routes/drugSeizures.tsx:28
+#: app/routes/newDrugSeizure.tsx:65
+msgid "Submit Seizure"
+msgstr ""
+
+#: app/routes/newDrugSeizure.tsx:45
+#: app/routes/drugSeizures.tsx:30
 msgid "Substance"
 msgstr ""
 
