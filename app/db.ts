@@ -17,4 +17,4 @@ function DB() {
 	};
 }
 
-export const { db, safe, find } = DB();
+export const { db, save, find } = DB();
