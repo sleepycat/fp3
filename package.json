@@ -5,7 +5,7 @@
 	"sideEffects": false,
 	"type": "module",
 	"scripts": {
-		"prepare": "panda codegen",
+		"panda:codegen": "panda codegen --clean",
 		"dev": "concurrently 'npm run dev:*'",
 		"build": "react-router build",
 		"dev:rr": "react-router dev --port 3000",
@@ -15,7 +15,8 @@
 		"extract": "lingui extract --clean",
 		"compile": "lingui compile",
 		"start": "react-router-serve ./build/server/index.js",
-		"typecheck": "react-router typegen && tsc"
+		"typecheck": "react-router typegen && tsc",
+		"rr:typegen": "react-router typegen"
 	},
 	"dependencies": {
 		"@lingui/core": "^5.3.1",
