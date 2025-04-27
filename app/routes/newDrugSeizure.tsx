@@ -2,13 +2,15 @@ import { i18n } from "@lingui/core";
 import { Trans } from "@lingui/react/macro";
 import { Form, redirect } from "react-router";
 import { css } from "../../styled-system/css";
-import { db, save } from "../db";
+import { db } from "../db";
+import type { LoaderFunctionArgs } from "react-router";
+import type { Route } from "./+types/drugSeizures";
 
-export async function loader({ request }) {
+export async function loader() {
 	return db;
 }
 
-export async function action({ request }) {
+export async function action({ request }: LoaderFunctionArgs) {
 	const formData = await request.formData();
 	const data = Object.fromEntries(formData);
 	db.push(data);
@@ -16,12 +18,16 @@ export async function action({ request }) {
 	return redirect(i18n._("/drug-seizures"));
 }
 
+function today() {
+	return new Date().toISOString().substring(0, 10);
+}
+
 export default function DrugSeizureForm({
 	loaderData,
 	actionData,
 	params,
 	matches,
-}) {
+}: Route.ComponentProps) {
 	const formClass = css`
     display: grid;
     grid-template-rows: auto auto;
@@ -60,7 +66,24 @@ export default function DrugSeizureForm({
 				<label htmlFor="date" className={labelClass}>
 					<Trans>Seizure Date</Trans>
 				</label>
-				<input className={inputClass} id="date" name="date" type="date" />
+				<input
+					className={inputClass}
+					id="seizureDate"
+					name="seizureDate"
+					type="date"
+					defaultValue={today()} // default the defaultValue to today
+				/>
+
+				<label htmlFor="date" className={labelClass}>
+					<Trans>Reporting Date</Trans>
+				</label>
+				<input
+					className={inputClass}
+					id="reportingDate"
+					name="reportingDate"
+					type="date"
+					defaultValue={today()} // default the defaultValue to today
+				/>
 
 				<button type="submit">
 					<Trans>Submit Seizure</Trans>

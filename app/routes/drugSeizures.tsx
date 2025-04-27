@@ -2,10 +2,12 @@ import { t } from "@lingui/core/macro";
 import { Trans as TransMacro } from "@lingui/react/macro";
 import { Trans as TransComponent } from "@lingui/react";
 import { NavLink } from "react-router";
-import { db, save } from "../db";
+import { db } from "../db";
 import { css } from "../../styled-system/css";
+import type { LoaderFunctionArgs } from "react-router";
+import type { Route } from "./+types/drugSeizures";
 
-export async function loader({ request }) {
+export async function loader({ request }: LoaderFunctionArgs) {
 	return db;
 }
 
@@ -23,7 +25,7 @@ export default function DrugSeizureSummary({
 	actionData,
 	params,
 	matches,
-}) {
+}: Route.ComponentProps) {
 	// TODO: make this some sort of data viz
 	return (
 		<>
@@ -37,20 +39,22 @@ export default function DrugSeizureSummary({
 							{d.amount} <TransMacro>grams</TransMacro>
 						</p>
 						<p>
-							<TransMacro>Date</TransMacro>: {d.date}
+							<TransMacro>Seizure Date</TransMacro>: {d.seizureDate}
+						</p>
+						<p>
+							<TransMacro>Reporting Date</TransMacro>: {d.reportingDate}
 						</p>
 						<hr />
 					</li>
 				)) ?? null}
 			</ul>
-			{/* @ts-expect-error: Typescript doesn't seem to have correct type info for Trans. */}
 			<TransComponent
 				id="new"
 				render={({ translation }) => {
-					// @ts-expect-error Type 'ReactNode' is not assignable to type 'To'
 					return (
 						<NavLink
 							className={linkClass}
+							// @ts-expect-error Type 'ReactNode' is not assignable to type 'To'
 							to={translation}
 						>{t`New seizure record`}</NavLink>
 					);
