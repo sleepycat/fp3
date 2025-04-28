@@ -1,0 +1,4 @@
+const messages = JSON.parse('{"/terms-and-conditions":"/avis","Switch language":"basculer la langue","SKzEor":"Tutoriel de démarrage rapide de 15 minutes pour un blog","cYOele":"Une erreur inattendue s’est produite.","lYGfRP":"Anglais","FHcLxM":"Portail public de la police fédérale","nLC6tu":"Français","i0qMbr":"Accueil","tEOA12":"Termes juridiques obscurs","Z3jxtm":"liens","A78Zs0":"Portail public","CDtsbp":"Documentation Remix","VliEgV":"Gendarmerie royale du Canada","Y/bg5x":"Gendarmerie royale<0/> du Canada","eyFYak":"Symbole du gouvernement du Canada","mBCf+y":"avis","mvP/25":"Avis","8YYZco":"Le logo de la GRC"}');
+export {
+  messages
+};
