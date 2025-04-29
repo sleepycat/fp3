@@ -69,7 +69,7 @@ export default function DrugSeizureForm({
 				<input
 					className={inputClass}
 					id="seizureDate"
-					name="seizureDate"
+					name="seized_on"
 					type="date"
 					defaultValue={today()} // default the defaultValue to today
 				/>
@@ -80,7 +80,7 @@ export default function DrugSeizureForm({
 				<input
 					className={inputClass}
 					id="reportingDate"
-					name="reportingDate"
+					name="reported_on"
 					type="date"
 					defaultValue={today()} // default the defaultValue to today
 				/>

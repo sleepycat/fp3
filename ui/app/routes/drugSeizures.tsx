@@ -36,13 +36,14 @@ export default function DrugSeizureSummary({
 							<TransMacro>Substance</TransMacro>: {d.substance}
 						</h4>
 						<p>
-							{d.amount} <TransMacro>grams</TransMacro>
+							<TransMacro>Amount</TransMacro>: {d.amount}{" "}
+							<TransMacro>grams</TransMacro>
 						</p>
 						<p>
-							<TransMacro>Seizure Date</TransMacro>: {d.seizureDate}
+							<TransMacro>Seizure Date</TransMacro>: {d.seized_on}
 						</p>
 						<p>
-							<TransMacro>Reporting Date</TransMacro>: {d.reportingDate}
+							<TransMacro>Reporting Date</TransMacro>: {d.reported_on}
 						</p>
 						<hr />
 					</li>
