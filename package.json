@@ -19,6 +19,7 @@
 		"rr:typegen": "react-router typegen"
 	},
 	"dependencies": {
+		"@databases/sqlite": "^4.0.2",
 		"@lingui/core": "^5.3.1",
 		"@lingui/detect-locale": "^5.3.1",
 		"@lingui/macro": "^5.3.1",

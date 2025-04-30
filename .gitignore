@@ -18,3 +18,9 @@ build.utils.d.ts
 ## Panda
 styled-system
 styled-system-studio
+
+# keep sqlite stuff out of git
+*.db
+
+# keep pdf docs out of git
+*.pdf

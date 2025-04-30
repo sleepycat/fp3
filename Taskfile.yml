@@ -1,0 +1,34 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+env:
+  # insecure here is to allow http to be used.
+  # Encryption is taken care of at the network layer.
+  # XXX: currently not using username/password auth
+  DATABASE_URL: sqlite3://ui/seizures.db
+
+tasks:
+
+  migration:
+    desc: Create a new migration.
+    cmds:
+      - migrate create -ext sql -dir migrations -seq {{.CLI_ARGS}}
+
+  migrate:
+    desc: Run all migrations on the database.
+    cmds:
+      - migrate -database "$DATABASE_URL" -path migrations {{.CLI_ARGS | default "up"}}
+
+  dev:
+    desc: Run the application in development mode
+    cmds:
+      - docker compose up -d
+
+  installmigrate:
+    desc: Install the Golang Migrate command line tool
+    cmds:
+      - go install -tags 'sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest

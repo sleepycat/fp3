@@ -2,19 +2,28 @@ import { i18n } from "@lingui/core";
 import { Trans } from "@lingui/react/macro";
 import { Form, redirect } from "react-router";
 import { css } from "../../styled-system/css";
-import { db } from "../db";
+import { sql } from "../db";
 import type { LoaderFunctionArgs } from "react-router";
 import type { Route } from "./+types/drugSeizures";
 
 export async function loader() {
-	return db;
+	// TODO: think about pagination
+	return sql`
+		SELECT * FROM seizures;
+	`;
 }
 
 export async function action({ request }: LoaderFunctionArgs) {
 	const formData = await request.formData();
-	const data = Object.fromEntries(formData);
-	db.push(data);
-	// redirect to the url that matches the current langauge
+
+	const { substance, amount, reported_on, seized_on } =
+		Object.fromEntries(formData);
+
+	// TODO: add some error handling here.
+	const results = await sql`
+    INSERT INTO seizures (substance, amount, reported_on, seized_on)
+      VALUES (${substance}, ${amount}, ${reported_on}, ${seized_on}) RETURNING *;
+	`;
 	return redirect(i18n._("/drug-seizures"));
 }
 

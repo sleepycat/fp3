@@ -1,1 +1,0 @@
-import{q as e,x as r,y as s,z as o,r as n}from"./chunk-KNED5TY2-DlGhbW8p.js";function u(a){return function(){const t={params:o(),loaderData:s(),actionData:r(),matches:e()};return n.createElement(a,t)}}export{u as w};

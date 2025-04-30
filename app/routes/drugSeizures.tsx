@@ -2,13 +2,15 @@ import { t } from "@lingui/core/macro";
 import { Trans as TransMacro } from "@lingui/react/macro";
 import { Trans as TransComponent } from "@lingui/react";
 import { NavLink } from "react-router";
-import { db } from "../db";
 import { css } from "../../styled-system/css";
-import type { LoaderFunctionArgs } from "react-router";
 import type { Route } from "./+types/drugSeizures";
+import { sql } from "../db";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-	return db;
+export async function loader() {
+	const results = await sql`
+		SELECT * FROM seizures;
+	`;
+	return results;
 }
 
 const linkClass = css`
