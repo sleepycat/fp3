@@ -20,7 +20,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: app/Navigation.tsx:39
-#: app/routes/newDrugSeizure.tsx:18
+#: app/routes/newDrugSeizure.tsx:27
 msgid "/drug-seizures"
 msgstr ""
 
@@ -30,7 +30,7 @@ msgid "/terms-and-conditions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: app/routes/drugSeizures.tsx:52
+#: app/routes/drugSeizures.tsx:62
 msgid "new"
 msgstr ""
 
@@ -43,11 +43,7 @@ msgstr ""
 msgid "15m Quickstart Blog Tutorial"
 msgstr ""
 
-#: app/routes/drugSeizures.tsx:39
-msgid "Amount"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:62
+#: app/routes/newDrugSeizure.tsx:71
 msgid "Amount (grams)"
 msgstr ""
 
@@ -60,7 +56,7 @@ msgstr ""
 msgid "Drug Seizures"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:48
+#: app/routes/newDrugSeizure.tsx:57
 msgid "Drug Seizures Form"
 msgstr ""
 
@@ -76,7 +72,7 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: app/routes/drugSeizures.tsx:40
+#: app/routes/drugSeizures.tsx:50
 msgid "grams"
 msgstr ""
 
@@ -88,7 +84,11 @@ msgstr ""
 msgid "Legal jargon"
 msgstr ""
 
-#: app/routes/drugSeizures.tsx:60
+#: app/routes/drugSeizures.tsx:56
+msgid "Month"
+msgstr ""
+
+#: app/routes/drugSeizures.tsx:70
 msgid "New seizure record"
 msgstr ""
 
@@ -101,8 +101,7 @@ msgstr ""
 msgid "Remix Docs"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:78
-#: app/routes/drugSeizures.tsx:46
+#: app/routes/newDrugSeizure.tsx:87
 msgid "Reporting Date"
 msgstr ""
 
@@ -115,17 +114,16 @@ msgstr ""
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:67
-#: app/routes/drugSeizures.tsx:43
+#: app/routes/newDrugSeizure.tsx:76
 msgid "Seizure Date"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:89
+#: app/routes/newDrugSeizure.tsx:98
 msgid "Submit Seizure"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:52
-#: app/routes/drugSeizures.tsx:36
+#: app/routes/newDrugSeizure.tsx:61
+#: app/routes/drugSeizures.tsx:46
 msgid "Substance"
 msgstr ""
 
@@ -143,4 +141,12 @@ msgstr ""
 
 #: app/Header.tsx:27
 msgid "The logo of the RCMP"
+msgstr ""
+
+#: app/routes/drugSeizures.tsx:49
+msgid "Total Amount"
+msgstr ""
+
+#: app/routes/drugSeizures.tsx:53
+msgid "Year"
 msgstr ""

@@ -20,7 +20,7 @@ msgstr "/"
 
 #. js-lingui-explicit-id
 #: app/Navigation.tsx:39
-#: app/routes/newDrugSeizure.tsx:18
+#: app/routes/newDrugSeizure.tsx:27
 msgid "/drug-seizures"
 msgstr "/saisies-de-drogues"
 
@@ -30,7 +30,7 @@ msgid "/terms-and-conditions"
 msgstr "/avis"
 
 #. js-lingui-explicit-id
-#: app/routes/drugSeizures.tsx:52
+#: app/routes/drugSeizures.tsx:62
 msgid "new"
 msgstr "nouveau"
 
@@ -43,11 +43,7 @@ msgstr "basculer la langue"
 msgid "15m Quickstart Blog Tutorial"
 msgstr "Tutoriel de démarrage rapide de 15 minutes pour un blog"
 
-#: app/routes/drugSeizures.tsx:39
-msgid "Amount"
-msgstr "Quantité"
-
-#: app/routes/newDrugSeizure.tsx:62
+#: app/routes/newDrugSeizure.tsx:71
 msgid "Amount (grams)"
 msgstr "Quantité (grammes)"
 
@@ -60,7 +56,7 @@ msgstr "Une erreur inattendue s’est produite."
 msgid "Drug Seizures"
 msgstr "Saisies de drogues"
 
-#: app/routes/newDrugSeizure.tsx:48
+#: app/routes/newDrugSeizure.tsx:57
 msgid "Drug Seizures Form"
 msgstr "Formulaire de saisie de drogue"
 
@@ -76,7 +72,7 @@ msgstr "Portail public de la police fédérale"
 msgid "French"
 msgstr "Français"
 
-#: app/routes/drugSeizures.tsx:40
+#: app/routes/drugSeizures.tsx:50
 msgid "grams"
 msgstr "grammes"
 
@@ -88,7 +84,11 @@ msgstr "Accueil"
 msgid "Legal jargon"
 msgstr "Termes juridiques obscurs"
 
-#: app/routes/drugSeizures.tsx:60
+#: app/routes/drugSeizures.tsx:56
+msgid "Month"
+msgstr "Mois"
+
+#: app/routes/drugSeizures.tsx:70
 msgid "New seizure record"
 msgstr "Nouveau record de saisie"
 
@@ -101,8 +101,7 @@ msgstr "Portail public"
 msgid "Remix Docs"
 msgstr "Documentation Remix"
 
-#: app/routes/newDrugSeizure.tsx:78
-#: app/routes/drugSeizures.tsx:46
+#: app/routes/newDrugSeizure.tsx:87
 msgid "Reporting Date"
 msgstr "Date du rapport"
 
@@ -115,17 +114,16 @@ msgstr "Gendarmerie royale du Canada"
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr "Gendarmerie royale<0/> du Canada"
 
-#: app/routes/newDrugSeizure.tsx:67
-#: app/routes/drugSeizures.tsx:43
+#: app/routes/newDrugSeizure.tsx:76
 msgid "Seizure Date"
 msgstr "Date de la saisie"
 
-#: app/routes/newDrugSeizure.tsx:89
+#: app/routes/newDrugSeizure.tsx:98
 msgid "Submit Seizure"
 msgstr "Soumettre la saisie"
 
-#: app/routes/newDrugSeizure.tsx:52
-#: app/routes/drugSeizures.tsx:36
+#: app/routes/newDrugSeizure.tsx:61
+#: app/routes/drugSeizures.tsx:46
 msgid "Substance"
 msgstr "Substance"
 
@@ -144,3 +142,11 @@ msgstr "Avis"
 #: app/Header.tsx:27
 msgid "The logo of the RCMP"
 msgstr "Le logo de la GRC"
+
+#: app/routes/drugSeizures.tsx:49
+msgid "Total Amount"
+msgstr "Montant total"
+
+#: app/routes/drugSeizures.tsx:53
+msgid "Year"
+msgstr "Année"

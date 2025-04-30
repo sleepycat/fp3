@@ -6,9 +6,20 @@ import { css } from "../../styled-system/css";
 import type { Route } from "./+types/drugSeizures";
 import { sql } from "../db";
 
+// Loaders are extracted by the compiler and included only in the generated
+// server bundle.
 export async function loader() {
+	// TODO: add some error handling here.
 	const results = await sql`
-		SELECT * FROM seizures;
+		SELECT strftime('%Y',seized_on) AS year, 
+       strftime('%m', seized_on) AS month, 
+       substance, 
+       sum(amount) AS amount
+     FROM seizures
+     GROUP BY
+       strftime('%Y', seized_on), 
+       strftime('%m', seized_on), 
+       substance;
 	`;
 	return results;
 }
@@ -24,9 +35,6 @@ const listClass = css`
 
 export default function DrugSeizureSummary({
 	loaderData,
-	actionData,
-	params,
-	matches,
 }: Route.ComponentProps) {
 	// TODO: make this some sort of data viz
 	return (
@@ -38,14 +46,14 @@ export default function DrugSeizureSummary({
 							<TransMacro>Substance</TransMacro>: {d.substance}
 						</h4>
 						<p>
-							<TransMacro>Amount</TransMacro>: {d.amount}{" "}
+							<TransMacro>Total Amount</TransMacro>: {d.amount}{" "}
 							<TransMacro>grams</TransMacro>
 						</p>
 						<p>
-							<TransMacro>Seizure Date</TransMacro>: {d.seized_on}
+							<TransMacro>Year</TransMacro>: {d.year}
 						</p>
 						<p>
-							<TransMacro>Reporting Date</TransMacro>: {d.reported_on}
+							<TransMacro>Month</TransMacro>: {d.month}
 						</p>
 						<hr />
 					</li>
