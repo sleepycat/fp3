@@ -14,12 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-#: app/Navigation.tsx:29
+#: app/Navigation.tsx:28
 msgid "/"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: app/Navigation.tsx:39
+#: app/Navigation.tsx:38
 #: app/routes/newDrugSeizure.tsx:27
 msgid "/drug-seizures"
 msgstr ""
@@ -52,7 +52,7 @@ msgstr ""
 msgid "An Unexpected Error Occured"
 msgstr ""
 
-#: app/Navigation.tsx:45
+#: app/Navigation.tsx:44
 msgid "Drug Seizures"
 msgstr ""
 
@@ -62,6 +62,10 @@ msgstr ""
 
 #: app/modules/lingui/lingui.tsx:20
 msgid "English"
+msgstr ""
+
+#: app/TitleBar.tsx:21
+msgid "Federal Policing"
 msgstr ""
 
 #: app/routes/home.tsx:22
@@ -76,7 +80,7 @@ msgstr ""
 msgid "grams"
 msgstr ""
 
-#: app/Navigation.tsx:35
+#: app/Navigation.tsx:34
 msgid "Home"
 msgstr ""
 
@@ -93,7 +97,6 @@ msgid "New seizure record"
 msgstr ""
 
 #: app/routes/termsAndConditions.tsx:14
-#: app/routes/home.tsx:14
 msgid "Public Portal"
 msgstr ""
 

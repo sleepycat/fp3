@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Navigation from "./Navigation";
+import TitleBar from "./TitleBar";
 import { css } from "../styled-system/css";
 import favicon from "./images/favicon.ico?url";
 import font from "./fonts/OverusedGrotesk-VF.woff2?url";
@@ -94,6 +95,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<Header />
+				<TitleBar />
 				<Navigation />
 				{/*
          No need for "skip to main content" links:
