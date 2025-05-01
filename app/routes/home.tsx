@@ -11,7 +11,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
 export function loader() {
 	return data({
-		title: t`Public Portal`,
+		title: "Public Portal",
 	});
 }
 
