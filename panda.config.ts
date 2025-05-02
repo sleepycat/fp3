@@ -36,6 +36,7 @@ export default defineConfig({
 						value: "hsl(42, 40%, 58%)",
 					},
 					lightgray: { value: "#b50315" },
+					white: { value: "#ffffff" },
 				},
 			},
 			semanticTokens: {
