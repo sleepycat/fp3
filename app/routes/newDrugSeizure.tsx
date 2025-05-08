@@ -1,11 +1,33 @@
+import { useState } from "react";
+import { parseAbsoluteToLocal, parseDate } from "@internationalized/date";
 import { i18n } from "@lingui/core";
 import { Trans } from "@lingui/react/macro";
-import { Form as RRForm, redirect } from "react-router";
+import { redirect } from "react-router";
 import { css } from "../../styled-system/css";
 import { sql } from "../db";
 import type { LoaderFunctionArgs } from "react-router";
-import type { Route } from "./+types/drugSeizures";
-import { Form } from "radix-ui";
+import { useActionData, useSubmit } from "react-router";
+import { today } from "@internationalized/date";
+import CalendarIcon from "../CalendarIcon";
+import {
+	NumberField,
+	Button,
+	Calendar,
+	CalendarCell,
+	CalendarGrid,
+	DateInput,
+	DatePicker,
+	DateSegment,
+	Dialog,
+	Group,
+	Heading,
+	Label,
+	Popover,
+	FieldError,
+	Form,
+	Input,
+	TextField,
+} from "react-aria-components";
 
 export async function loader() {
 	// TODO: think about pagination
@@ -21,6 +43,7 @@ export async function action({ request }: LoaderFunctionArgs) {
 		Object.fromEntries(formData);
 
 	// TODO: add some error handling here.
+	// https://reactrouter.com/how-to/form-validation
 	const results = await sql`
     INSERT INTO seizures (substance, amount, reported_on, seized_on)
       VALUES (${substance}, ${amount}, ${reported_on}, ${seized_on}) RETURNING *;
@@ -28,167 +51,304 @@ export async function action({ request }: LoaderFunctionArgs) {
 	return redirect(i18n._("/drug-seizures"));
 }
 
-function today() {
-	return new Date().toISOString().substring(0, 10);
-}
+export default function DrugSeizureForm() {
+	const submit = useSubmit();
+	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		submit(e.currentTarget);
+	};
 
-export default function DrugSeizureForm({
-	loaderData,
-	actionData,
-	params,
-	matches,
-}: Route.ComponentProps) {
-	const formClass = css`
-	
-  `;
+	const actionData = useActionData<typeof action>();
 
-	const inputClass = css`
-		width: 100%;
-	  display: inline-flex;
-	  align-items: center;
-	  justify-content: center;
-	  border-radius: 4px;
-	  font-size: 15px;
-	  color: token(colors.black);
-	  padding: 0.5em 1em;
-	  background-color: token(colors.white);
-	  box-shadow: 0 0 0 1px token(colors.gray);
-
-	  &:focus {
-	    box-shadow: 0 0 0 2px black;
-	  }
-  `;
-
-	const labelClass = css`
-		font-size: 1em;
-	font-weight: 500;
-	line-height: 35px;
-	color: token(colors.black);
-		`;
-
-	const buttonClass = css`
-	  margin-top: 2em;
-	  display: inline-flex;
-	  align-items: center;
-	  justify-content: center;
-	  border-radius: 4px;
-	  padding: 0 15px;
-	  font-size: 15px;
-	  line-height: 1;
-	  font-weight: 500;
-	  height: 35px;
-	  width: 100%;
-	  background-color: token(colors.gray);
-	  color: token(colors.white);
-	  box-shadow: 0 2px 5px token(colors.gray);
-	`;
-
-	const FormField = css`
-		display: grid;
-	  margin-bottom: 10px;
-	`;
-
-	const FormMessage = css`
-	font-size: 13px;
-	color: token(colors.black);
-	opacity: 0.8;
-  `;
-
+	const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	const [date, setDate] = useState(
+		parseAbsoluteToLocal("2021-04-07T18:45:22Z"),
+	);
 	return (
 		<>
-			<h2>
+			<h2
+				className={css`
+					margin: 1em 0em;
+				`}
+			>
 				<Trans>Drug Seizures Form</Trans>
 			</h2>
-			<Form.Root asChild className={css`width: 100%;`}>
-				<RRForm className={formClass} method="post">
-					<Form.Field name="substance" className={FormField}>
-						<Form.Label className={labelClass}>
-							<Trans>Substance</Trans>
-						</Form.Label>
-						<Form.Message className={FormMessage} match="valueMissing">
-							<Trans>Enter the (suspected) type of substance</Trans>
-						</Form.Message>
-						<Form.Message className="FormMessage" match="typeMismatch">
-							<Trans>
-								Please enter text with the assumed type of the substance
-							</Trans>
-						</Form.Message>
-						<Form.Control asChild className={inputClass}>
-							<input id="substance" name="substance" type="text" />
-						</Form.Control>
-					</Form.Field>
 
-					<Form.Field name="amount" className={FormField}>
-						<Form.Label className={labelClass}>
-							<Trans>Amount (grams)</Trans>
-						</Form.Label>
-						<Form.Message className={FormMessage} match="valueMissing">
-							<Trans>Enter a numerical amount in grams</Trans>
-						</Form.Message>
-						<Form.Message className="FormMessage" match="typeMismatch">
-							<Trans>Please enter an number</Trans>
-						</Form.Message>
-						<Form.Control asChild className={inputClass}>
-							<input
-								className={inputClass}
-								id="amount"
-								name="amount"
-								type="number"
-							/>
-						</Form.Control>
-					</Form.Field>
+			<Form
+				method="post"
+				validationErrors={actionData?.errors}
+				onSubmit={onSubmit}
+			>
+				<TextField
+					name="substance"
+					isRequired
+					className={css`
+					  display: inline-grid;
+					`}
+				>
+					<Label className={css`margin-right: 2em;`}>
+						<Trans>Substance</Trans>
+					</Label>
+					<Input
+						name="substance"
+						className={css`
+						  padding: 0.5rem;
+						  width: 14em;
+						  border: 0.125rem solid token(colors.gray);
+						  border-radius: token(radii.sm);
+						`}
+					/>
+					<FieldError />
+				</TextField>
 
-					<Form.Field name="seized_on" className={FormField}>
-						<Form.Label className={labelClass}>
-							<Trans>Seizure Date</Trans>
-						</Form.Label>
-						<Form.Message className={FormMessage} match="valueMissing">
-							<Trans>
-								Enter the date the seizure of the substance took place
-							</Trans>
-						</Form.Message>
-						<Form.Message className="FormMessage" match="typeMismatch">
-							<Trans>Must be a date</Trans>
-						</Form.Message>
-						<Form.Control asChild className={inputClass}>
-							<input
-								className={inputClass}
-								id="seizureDate"
-								name="seized_on"
-								type="date"
-								defaultValue={today()} // default the defaultValue to today
-							/>
-						</Form.Control>
-					</Form.Field>
+				<DatePicker name="seized_on">
+					<Label>
+						<Trans>Seizure Date</Trans>
+					</Label>
+					<Group
+						className={css`
+						width: 14em;
+						  border: 0.125rem solid token(colors.gray);
+						  border-radius: token(radii.sm);
+							width: 14em;
+							display: flex;
+							justify-content: space-between;
 
-					<Form.Field name="reported_on" className={FormField}>
-						<Form.Label className={labelClass}>
-							<Trans>Reporting Date</Trans>
-						</Form.Label>
-						<Form.Message className={FormMessage} match="valueMissing">
-							<Trans>Enter the date the seizure was reported.</Trans>
-						</Form.Message>
-						<Form.Message className="FormMessage" match="typeMismatch">
-							<Trans>Must be a date</Trans>
-						</Form.Message>
-						<Form.Control asChild className={inputClass}>
-							<input
-								className={inputClass}
-								id="reportingDate"
-								name="reported_on"
-								type="date"
-								defaultValue={today()} // default the defaultValue to today
-							/>
-						</Form.Control>
-					</Form.Field>
+					`}
+					>
+						<DateInput
+							className={css`
+							display: inline-block;
+						  padding: 0.5rem;
+					`}
+						>
+							{(segment) => <DateSegment segment={segment} />}
+						</DateInput>
+						<Button className={css`margin: 0em 1em;`}>
+							<CalendarIcon />
+						</Button>
+					</Group>
+					<Popover>
+						<Dialog>
+							<Calendar
+								className={css`
+									background: token(colors.white);
+									text-align: center;
+								`}
+							>
+								<header
+									className={css`
+										  flex: 1;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      gap: 6px;
+                      margin: 0 8px 12px 8px;
+									`}
+								>
+									<Button slot="previous">◀</Button>
+									<Heading />
+									<Button slot="next">▶</Button>
+								</header>
+								<CalendarGrid
+									className={css`
+									background: token(colors.white);
+								`}
+								>
+									{(date) => (
+										<CalendarCell
+											className={css`
+												  cursor: default;
+                          width: 2em;
+                          height: 2em;
+                          width: 14em;
+                          margin: 2px;
+						              border-radius: token(radii.sm);
+                          position: relative;
+                          outline: none;
+                          color: token(colors.black);
+                          border: 2px solid token(colors.white);
+                          line-height: 1.8em;
 
-					<Form.Submit asChild>
-						<button type="submit" className={buttonClass}>
-							<Trans>Submit Seizure</Trans>
-						</button>
-					</Form.Submit>
-				</RRForm>
-			</Form.Root>
+                          &:hover {
+  	                        background: #eee;
+                          }
+
+                          &[data-pressed] {
+  	                        background: token(colors.rcmpred);
+                          }
+
+                          &[data-selected]{
+  	                        background: token(colors.rcmpred);
+                            color: token(colors.white);
+                          }
+
+                          &[data-focused]{
+                            box-sizing: border-box;
+                          	border: 2px solid token(colors.rcmpred);
+                          }
+
+                          &[data-disabled]{
+                          	background: token(colors.lightgray);
+                          }
+											`}
+											date={date}
+										/>
+									)}
+								</CalendarGrid>
+							</Calendar>
+						</Dialog>
+					</Popover>
+				</DatePicker>
+
+				<DatePicker name="reported_on">
+					<Label>
+						<Trans>Reporting Date</Trans>
+					</Label>
+					<Group
+						className={css`
+						width: 14em;
+						  border: 0.125rem solid token(colors.gray);
+						  border-radius: token(radii.sm);
+							width: 14em;
+							display: flex;
+							justify-content: space-between;
+					`}
+					>
+						<DateInput
+							className={css`
+							display: inline-block;
+						  padding: 0.5rem;
+					`}
+						>
+							{(segment) => <DateSegment segment={segment} />}
+						</DateInput>
+						<Button className={css`margin: 0em 1em;`}>
+							<CalendarIcon />
+						</Button>
+					</Group>
+					<Popover>
+						<Dialog className={css`display: flex;`}>
+							<Calendar
+								className={css`
+									background: token(colors.white);
+									text-align: center;
+								`}
+							>
+								<header
+									className={css`
+										  flex: 1;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      gap: 6px;
+                      margin: 0 8px 12px 8px;
+									`}
+								>
+									<Button slot="previous">◀</Button>
+									<Heading />
+									<Button slot="next">▶</Button>
+								</header>
+								<CalendarGrid
+									className={css`
+									background: token(colors.white);
+								`}
+								>
+									{(date) => (
+										<CalendarCell
+											className={css`
+												  cursor: default;
+                          width: 2em;
+                          height: 2em;
+                          width: 14em;
+                          margin: 2px;
+						              border-radius: token(radii.sm);
+                          position: relative;
+                          outline: none;
+                          color: token(colors.black);
+                          border: 2px solid token(colors.white);
+                          line-height: 1.8em;
+
+                          &:hover {
+  	                        background: #eee;
+                          }
+
+                          &[data-pressed] {
+  	                        background: token(colors.rcmpred);
+                          }
+
+                          &[data-selected]{
+  	                        background: token(colors.rcmpred);
+                            color: token(colors.white);
+                          }
+
+                          &[data-focused]{
+                            box-sizing: border-box;
+                          	border: 2px solid token(colors.rcmpred);
+                          }
+
+                          &[data-disabled]{
+                          	background: token(colors.lightgray);
+                          }
+											`}
+											date={date}
+										/>
+									)}
+								</CalendarGrid>
+							</Calendar>
+						</Dialog>
+					</Popover>
+				</DatePicker>
+
+				<NumberField name="amount" defaultValue={0} minValue={0}>
+					<Label>
+						<Trans>Amount in grams</Trans>
+					</Label>
+					<Group
+						className={css`
+						width: 14em;
+						  border: 0.125rem solid token(colors.gray);
+						  border-radius: token(radii.sm);
+							width: 14em;
+							display: flex;
+							padding: 0em 1em;
+							height: 2em;
+							align-items: anchor-center;
+
+						`}
+					>
+						<Input
+							className={css`
+							width: 10em;
+							`}
+						/>
+						<Button
+							className={css`
+							margin: 0.5em;
+							`}
+							slot="decrement"
+						>
+							-
+						</Button>
+						<Button className={css`margin: 0.5em;`} slot="increment">
+							+
+						</Button>
+					</Group>
+				</NumberField>
+				<Button
+					className={css`
+						margin: 2em 0em;
+						width: 14em;
+						padding: 0.5em 1em;
+						border-radius: token(radii.sm);
+						color: token(colors.white);
+          	background: token(colors.gray);
+					`}
+					type="submit"
+				>
+					Submit
+				</Button>
+			</Form>
 		</>
 	);
 }

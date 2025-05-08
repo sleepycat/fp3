@@ -15,6 +15,9 @@ export default defineConfig({
 	theme: {
 		extend: {
 			tokens: {
+				radii: {
+					sm: { value: "0.25rem" },
+				},
 				colors: {
 					red: {
 						value: "hsl(354, 97%, 36%)",
@@ -35,7 +38,7 @@ export default defineConfig({
 					gold: {
 						value: "hsl(42, 40%, 58%)",
 					},
-					lightgray: { value: "#b50315" },
+					lightgray: { value: "#f1f2f3;" },
 					white: { value: "#ffffff" },
 				},
 			},

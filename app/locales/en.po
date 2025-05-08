@@ -20,7 +20,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: app/Navigation.tsx:38
-#: app/routes/newDrugSeizure.tsx:28
+#: app/routes/newDrugSeizure.tsx:51
 msgid "/drug-seizures"
 msgstr ""
 
@@ -43,8 +43,8 @@ msgstr ""
 msgid "15m Quickstart Blog Tutorial"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:123
-msgid "Amount (grams)"
+#: app/routes/newDrugSeizure.tsx:305
+msgid "Amount in grams"
 msgstr ""
 
 #: app/routes/termsAndConditions.tsx:7
@@ -56,28 +56,12 @@ msgstr ""
 msgid "Drug Seizures"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:100
+#: app/routes/newDrugSeizure.tsx:74
 msgid "Drug Seizures Form"
 msgstr ""
 
 #: app/modules/lingui/lingui.tsx:20
 msgid "English"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:126
-msgid "Enter a numerical amount in grams"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:109
-msgid "Enter the (suspected) type of substance"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:146
-msgid "Enter the date the seizure of the substance took place"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:169
-msgid "Enter the date the seizure was reported."
 msgstr ""
 
 #: app/TitleBar.tsx:21
@@ -108,21 +92,8 @@ msgstr ""
 msgid "Month"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:151
-#: app/routes/newDrugSeizure.tsx:172
-msgid "Must be a date"
-msgstr ""
-
 #: app/routes/drugSeizures.tsx:70
 msgid "New seizure record"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:129
-msgid "Please enter an number"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:112
-msgid "Please enter text with the assumed type of the substance"
 msgstr ""
 
 #: app/routes/termsAndConditions.tsx:14
@@ -133,7 +104,7 @@ msgstr ""
 msgid "Remix Docs"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:166
+#: app/routes/newDrugSeizure.tsx:206
 msgid "Reporting Date"
 msgstr ""
 
@@ -146,15 +117,11 @@ msgstr ""
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:143
+#: app/routes/newDrugSeizure.tsx:106
 msgid "Seizure Date"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:187
-msgid "Submit Seizure"
-msgstr ""
-
-#: app/routes/newDrugSeizure.tsx:106
+#: app/routes/newDrugSeizure.tsx:90
 #: app/routes/drugSeizures.tsx:46
 msgid "Substance"
 msgstr ""
