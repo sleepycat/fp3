@@ -1,33 +1,28 @@
 import { useState } from "react";
-import { parseAbsoluteToLocal, parseDate } from "@internationalized/date";
+import { z } from "zod";
+import type React from "react";
+import { parseAbsoluteToLocal } from "@internationalized/date";
 import { i18n } from "@lingui/core";
 import { Trans } from "@lingui/react/macro";
+import { t } from "@lingui/core/macro";
 import { redirect } from "react-router";
 import { css } from "../../styled-system/css";
 import { sql } from "../db";
 import type { LoaderFunctionArgs } from "react-router";
-import { useActionData, useSubmit } from "react-router";
-import { today } from "@internationalized/date";
-import CalendarIcon from "../CalendarIcon";
+import { useActionData, useSubmit, data } from "react-router";
+import DatePicker from "../DatePicker";
 import {
 	NumberField,
 	Button,
-	Calendar,
-	CalendarCell,
-	CalendarGrid,
-	DateInput,
-	DatePicker,
-	DateSegment,
-	Dialog,
 	Group,
-	Heading,
 	Label,
-	Popover,
 	FieldError,
 	Form,
 	Input,
 	TextField,
 } from "react-aria-components";
+
+type Errors = Record<string, string>;
 
 export async function loader() {
 	// TODO: think about pagination
@@ -37,17 +32,71 @@ export async function loader() {
 }
 
 export async function action({ request }: LoaderFunctionArgs) {
-	const formData = await request.formData();
+	// defining this inside the loader since the calls to i18n will only succeed
+	// after an incoming request has triggered a call to i18n.activate
+	const schema = z.object({
+		substance: z.string({
+			required_error: i18n._("A substance type required"),
+		}),
+		amount: z
+			.string({
+				required_error: i18n._("A non-zero amount is required"),
+				invalid_type_error: i18n._(
+					"Amount must be a non-zero positive integer",
+				),
+			})
+			.regex(/^\d+$/)
+			.transform(Number),
+		reported_on: z
+			.string({
+				required_error: i18n._("A reporting date is required"),
+				invalid_type_error: i18n._(
+					"Reporting date must be in YYYY-MM-DD format",
+				),
+			})
+			.date(),
+		seized_on: z
+			.string({
+				required_error: i18n._("A seizure date is required"),
+				invalid_type_error: i18n._("Seizure date must be in YYYY-MM-DD format"),
+			})
+			.date(),
+	});
 
-	const { substance, amount, reported_on, seized_on } =
-		Object.fromEntries(formData);
+	const form = await request.formData();
 
-	// TODO: add some error handling here.
-	// https://reactrouter.com/how-to/form-validation
-	const results = await sql`
+	const formData = Object.fromEntries(form);
+	// @ts-expect-error
+	const { success, error }: Errors = schema.safeParse(formData);
+
+	if (!success) {
+		// @ts-expect-error
+		const errs = error.errors.reduce(
+			(acc, err) => ({ ...acc, [err.path]: err.message }),
+			{},
+		);
+
+		return data({ errors: errs }, { status: 400 });
+	}
+
+	// everything is OK! Time to insert.
+	// Split out the variables
+	const { substance, amount, reported_on, seized_on } = formData;
+	// Time to insert:
+	try {
+		// In other languages this would be a sql injection,
+		//  but it's not because of how Tagged Template Literals work.
+		const results = await sql`
     INSERT INTO seizures (substance, amount, reported_on, seized_on)
       VALUES (${substance}, ${amount}, ${reported_on}, ${seized_on}) RETURNING *;
 	`;
+	} catch (e: unknown) {
+		let message: string;
+		if (e instanceof Error) {
+			message = e.message;
+			console.log({ catch: true, message });
+		}
+	}
 	return redirect(i18n._("/drug-seizures"));
 }
 
@@ -60,10 +109,14 @@ export default function DrugSeizureForm() {
 
 	const actionData = useActionData<typeof action>();
 
-	const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-	const [date, setDate] = useState(
-		parseAbsoluteToLocal("2021-04-07T18:45:22Z"),
-	);
+	const fieldErrorClass = css`
+  position: relative;
+  bottom: -3em;
+  right: 8.4em;
+  font-size: small;
+  color: token(colors.rcmpred);
+`;
+
 	return (
 		<>
 			<h2
@@ -96,209 +149,23 @@ export default function DrugSeizureForm() {
 						  width: 14em;
 						  border: 0.125rem solid token(colors.gray);
 						  border-radius: token(radii.sm);
+
+              &[data-invalid] {
+                border: 2px solid token(colors.rcmpred);
+              }
 						`}
 					/>
-					<FieldError />
+					<FieldError
+						className={css`
+							font-size: 0.8em;
+                color: token(colors.rcmpred);
+						`}
+					/>
 				</TextField>
 
-				<DatePicker name="seized_on">
-					<Label>
-						<Trans>Seizure Date</Trans>
-					</Label>
-					<Group
-						className={css`
-						width: 14em;
-						  border: 0.125rem solid token(colors.gray);
-						  border-radius: token(radii.sm);
-							width: 14em;
-							display: flex;
-							justify-content: space-between;
+				<DatePicker name="seized_on" label={t`Seizure Date`} />
 
-					`}
-					>
-						<DateInput
-							className={css`
-							display: inline-block;
-						  padding: 0.5rem;
-					`}
-						>
-							{(segment) => <DateSegment segment={segment} />}
-						</DateInput>
-						<Button className={css`margin: 0em 1em;`}>
-							<CalendarIcon />
-						</Button>
-					</Group>
-					<Popover>
-						<Dialog>
-							<Calendar
-								className={css`
-									background: token(colors.white);
-									text-align: center;
-								`}
-							>
-								<header
-									className={css`
-										  flex: 1;
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      gap: 6px;
-                      margin: 0 8px 12px 8px;
-									`}
-								>
-									<Button slot="previous">◀</Button>
-									<Heading />
-									<Button slot="next">▶</Button>
-								</header>
-								<CalendarGrid
-									className={css`
-									background: token(colors.white);
-								`}
-								>
-									{(date) => (
-										<CalendarCell
-											className={css`
-												  cursor: default;
-                          width: 2em;
-                          height: 2em;
-                          width: 14em;
-                          margin: 2px;
-						              border-radius: token(radii.sm);
-                          position: relative;
-                          outline: none;
-                          color: token(colors.black);
-                          border: 2px solid token(colors.white);
-                          line-height: 1.8em;
-
-                          &:hover {
-  	                        background: #eee;
-                          }
-
-                          &[data-pressed] {
-  	                        background: token(colors.rcmpred);
-                          }
-
-                          &[data-selected]{
-  	                        background: token(colors.rcmpred);
-                            color: token(colors.white);
-                          }
-
-                          &[data-focused]{
-                            box-sizing: border-box;
-                          	border: 2px solid token(colors.rcmpred);
-                          }
-
-                          &[data-disabled]{
-                          	background: token(colors.lightgray);
-                          }
-											`}
-											date={date}
-										/>
-									)}
-								</CalendarGrid>
-							</Calendar>
-						</Dialog>
-					</Popover>
-				</DatePicker>
-
-				<DatePicker name="reported_on">
-					<Label>
-						<Trans>Reporting Date</Trans>
-					</Label>
-					<Group
-						className={css`
-						width: 14em;
-						  border: 0.125rem solid token(colors.gray);
-						  border-radius: token(radii.sm);
-							width: 14em;
-							display: flex;
-							justify-content: space-between;
-					`}
-					>
-						<DateInput
-							className={css`
-							display: inline-block;
-						  padding: 0.5rem;
-					`}
-						>
-							{(segment) => <DateSegment segment={segment} />}
-						</DateInput>
-						<Button className={css`margin: 0em 1em;`}>
-							<CalendarIcon />
-						</Button>
-					</Group>
-					<Popover>
-						<Dialog className={css`display: flex;`}>
-							<Calendar
-								className={css`
-									background: token(colors.white);
-									text-align: center;
-								`}
-							>
-								<header
-									className={css`
-										  flex: 1;
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      gap: 6px;
-                      margin: 0 8px 12px 8px;
-									`}
-								>
-									<Button slot="previous">◀</Button>
-									<Heading />
-									<Button slot="next">▶</Button>
-								</header>
-								<CalendarGrid
-									className={css`
-									background: token(colors.white);
-								`}
-								>
-									{(date) => (
-										<CalendarCell
-											className={css`
-												  cursor: default;
-                          width: 2em;
-                          height: 2em;
-                          width: 14em;
-                          margin: 2px;
-						              border-radius: token(radii.sm);
-                          position: relative;
-                          outline: none;
-                          color: token(colors.black);
-                          border: 2px solid token(colors.white);
-                          line-height: 1.8em;
-
-                          &:hover {
-  	                        background: #eee;
-                          }
-
-                          &[data-pressed] {
-  	                        background: token(colors.rcmpred);
-                          }
-
-                          &[data-selected]{
-  	                        background: token(colors.rcmpred);
-                            color: token(colors.white);
-                          }
-
-                          &[data-focused]{
-                            box-sizing: border-box;
-                          	border: 2px solid token(colors.rcmpred);
-                          }
-
-                          &[data-disabled]{
-                          	background: token(colors.lightgray);
-                          }
-											`}
-											date={date}
-										/>
-									)}
-								</CalendarGrid>
-							</Calendar>
-						</Dialog>
-					</Popover>
-				</DatePicker>
+				<DatePicker name="reported_on" label={t`Reporting Date`} />
 
 				<NumberField name="amount" defaultValue={0} minValue={0}>
 					<Label>
@@ -314,14 +181,19 @@ export default function DrugSeizureForm() {
 							padding: 0em 1em;
 							height: 2em;
 							align-items: anchor-center;
-
+              margin-bottom: 1em;
 						`}
 					>
 						<Input
 							className={css`
 							width: 10em;
+
+              &[data-invalid] {
+                border: 2px solid token(colors.rcmpred);
+              }
 							`}
 						/>
+						<FieldError className={fieldErrorClass} />
 						<Button
 							className={css`
 							margin: 0.5em;

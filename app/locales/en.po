@@ -20,13 +20,48 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: app/Navigation.tsx:38
-#: app/routes/newDrugSeizure.tsx:51
+#: app/routes/newDrugSeizure.tsx:100
 msgid "/drug-seizures"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: app/Footer.tsx:34
 msgid "/terms-and-conditions"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: app/routes/newDrugSeizure.tsx:39
+msgid "A substance type required"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: app/routes/newDrugSeizure.tsx:43
+msgid "A non-zero amount is required"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: app/routes/newDrugSeizure.tsx:44
+msgid "Amount must be a non-zero positive integer"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: app/routes/newDrugSeizure.tsx:52
+msgid "A reporting date is required"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: app/routes/newDrugSeizure.tsx:53
+msgid "Reporting date must be in YYYY-MM-DD format"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: app/routes/newDrugSeizure.tsx:60
+msgid "A seizure date is required"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: app/routes/newDrugSeizure.tsx:61
+msgid "Seizure date must be in YYYY-MM-DD format"
 msgstr ""
 
 #. js-lingui-explicit-id
@@ -43,7 +78,7 @@ msgstr ""
 msgid "15m Quickstart Blog Tutorial"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:305
+#: app/routes/newDrugSeizure.tsx:172
 msgid "Amount in grams"
 msgstr ""
 
@@ -56,7 +91,7 @@ msgstr ""
 msgid "Drug Seizures"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:74
+#: app/routes/newDrugSeizure.tsx:127
 msgid "Drug Seizures Form"
 msgstr ""
 
@@ -104,7 +139,7 @@ msgstr ""
 msgid "Remix Docs"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:206
+#: app/routes/newDrugSeizure.tsx:168
 msgid "Reporting Date"
 msgstr ""
 
@@ -117,11 +152,11 @@ msgstr ""
 msgid "Royal Canadian<0/>Mounted Police"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:106
+#: app/routes/newDrugSeizure.tsx:166
 msgid "Seizure Date"
 msgstr ""
 
-#: app/routes/newDrugSeizure.tsx:90
+#: app/routes/newDrugSeizure.tsx:143
 #: app/routes/drugSeizures.tsx:46
 msgid "Substance"
 msgstr ""
