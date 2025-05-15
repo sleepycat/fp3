@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
+#: app/routes/drugSeizures.tsx:62
+msgid "/drug-seizures/new"
+msgstr "/saisies-de-drogues/nouveau"
+
+#. js-lingui-explicit-id
 #: app/Navigation.tsx:28
 msgid "/"
 msgstr "/"
@@ -63,11 +68,6 @@ msgstr "Une date de saisie est requise"
 #: app/routes/newDrugSeizure.tsx:61
 msgid "Seizure date must be in YYYY-MM-DD format"
 msgstr "La date de la crise doit être au format AAAA-MM-JJ."
-
-#. js-lingui-explicit-id
-#: app/routes/drugSeizures.tsx:62
-msgid "new"
-msgstr "nouveau"
 
 #. js-lingui-explicit-id
 #: app/modules/lingui/lingui.tsx:75

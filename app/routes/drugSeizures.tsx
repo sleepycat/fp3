@@ -60,7 +60,7 @@ export default function DrugSeizureSummary({
 				)) ?? null}
 			</ul>
 			<TransComponent
-				id="new"
+				id="/drug-seizures/new"
 				render={({ translation }) => {
 					return (
 						<NavLink
