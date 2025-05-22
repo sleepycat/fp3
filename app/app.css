@@ -23,5 +23,5 @@ body {
   font-family: 'Overused Grotesk';
   display: grid;
   grid-template-rows:
-    auto auto auto 1fr auto;
+    auto auto 1fr auto;
 }

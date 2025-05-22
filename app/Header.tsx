@@ -1,3 +1,4 @@
+import TitleBar from "./TitleBar";
 import { LocaleSelector } from "~/modules/lingui/lingui";
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
@@ -5,23 +6,23 @@ import { css } from "../styled-system/css";
 import logo from "./images/rcmp-crest-black.svg?url";
 
 export default function Header() {
-	const headerClass = css`
-  padding: 1em;
-  display: flex;
-  justify-content: space-between;
-  margin: auto auto;
-  width: 75%;
-`;
-
 	const logoSectionClass = css`
-  display: flex;
-  align-items: end;
-  line-height: 1em;
-`;
+    display: flex;
+    align-items: end;
+    line-height: 1em;
+  `;
+
+	const sectionClass = css`width: 15em;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    margin: auto auto;
+    width: 75%;
+  `;
 
 	return (
-		<header className={headerClass}>
-			<section className={css`width: 15em;`}>
+		<header>
+			<section className={sectionClass}>
 				<div className={logoSectionClass}>
 					<img
 						alt={t`The logo of the RCMP`}
@@ -36,8 +37,9 @@ export default function Header() {
 						Mounted Police
 					</Trans>
 				</div>
+				<LocaleSelector />
 			</section>
-			<LocaleSelector />
+			<TitleBar />
 		</header>
 	);
 }
