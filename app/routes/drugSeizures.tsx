@@ -41,7 +41,7 @@ export default function DrugSeizureSummary({
 		<>
 			<ul className={listClass}>
 				{loaderData.map((d) => (
-					<li key={d}>
+					<li key={d.substance + d.amount}>
 						<h4>
 							<TransMacro>Substance</TransMacro>: {d.substance}
 						</h4>
