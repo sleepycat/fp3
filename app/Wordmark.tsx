@@ -1,5 +1,6 @@
 import type React from "react";
-function Flag(props) {
+
+function Flag(props: React.SVGProps<SVGPathElement>) {
 	return (
 		<path
 			{...props}
@@ -8,7 +9,7 @@ function Flag(props) {
 	);
 }
 
-function Text(props) {
+function Text(props: React.SVGProps<SVGPathElement>) {
 	return (
 		<path
 			{...props}
@@ -17,7 +18,7 @@ function Text(props) {
 	);
 }
 
-const SVG = ({ children, ...rest }) => {
+const SVG = ({ children, ...rest }: React.SVGProps<SVGSVGElement> & { children?: React.ReactNode }) => {
 	return (
 		// biome-ignore lint/a11y/noSvgWithoutTitle: we're exposing this so people can add aria-labels or pass <title> to it.
 		<svg
