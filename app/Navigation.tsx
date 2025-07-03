@@ -34,7 +34,6 @@ export default function Navigation() {
 						return <NavLink to={translation}>{t`Home`}</NavLink>;
 					}}
 				/>
-				{/* @ts-expect-error: Typescript doesn't seem to have correct type info for Trans. */}
 				<Trans
 					id="/drug-seizures"
 					render={({ translation }) => {
