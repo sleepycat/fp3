@@ -82,7 +82,7 @@ describe("<Wordmark.Text/>", () => {
 				<Wordmark.Text data-foo="bar" />
 			</Wordmark.SVG>,
 		);
-		const flag = container.querySelector('[data-foo="bar"]');
-		expect(flag.tagName).toEqual("path");
+		const textElement = container.querySelector('[data-foo="bar"]');
+		expect(textElement!.tagName).toEqual("path");
 	});
 });
