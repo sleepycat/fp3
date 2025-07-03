@@ -79,7 +79,7 @@ export function LocaleSelector(props: ComponentProps<"select">) {
 		>
 			{languages.map((language) => (
 				<option key={language.key} value={language.key}>
-					{t(language.label.id)}
+					{t(language.label)}
 				</option>
 			))}
 		</select>
